@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import AsidePage from "./component/aside/Aside";
-import GlobalStyle from "./component/style/GlobalStyle";
+import GlobalStyle from "./component/commonStyle/GlobalStyle";
 import category from "./data/AsideCategory";
 import './App.css';
 
