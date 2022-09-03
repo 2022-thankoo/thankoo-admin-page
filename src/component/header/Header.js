@@ -3,24 +3,29 @@ import PropTypes from 'prop-types';
 import {FaSearch} from "react-icons/fa";
 
 import * as hs from './HeaderStyle';
+import {HeaderWrapper, ListSelection} from "./HeaderStyle";
 
 function Header({searchOption}) {
 
   return (
-    <hs.HeaderWrapper>
-      <hs.DateBox>
-        <hs.DateSelection name="startDate"/>
-        ~
-        <hs.DateSelection name="endDate"/>
-      </hs.DateBox>
-      {searchOption.hasStatus &&
-        <select name="status">
-          {searchOption.statuses.map((status) =>
-            <option key={status + ""} value={status + ""}>{status}</option>
-          )}
-        </select>}
-      <hs.SearchButton><FaSearch /></hs.SearchButton>
-    </hs.HeaderWrapper>
+    <hs.Header>
+      <HeaderWrapper>
+        <hs.DateBox>
+          <hs.DateSelection name="startDate"/>
+          ~
+          <hs.DateSelection name="endDate"/>
+        </hs.DateBox>
+        {searchOption.hasStatus &&
+          <ListSelection name="status">
+            {searchOption.statuses.map((status) =>
+              <option key={status + ""} value={status + ""}>
+                {status}
+              </option>
+            )}
+          </ListSelection>}
+        <hs.SearchButton><FaSearch /></hs.SearchButton>
+      </HeaderWrapper>
+    </hs.Header>
   )
 }
 
