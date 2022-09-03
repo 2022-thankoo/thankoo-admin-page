@@ -1,22 +1,21 @@
-function createCategoryElement(url, element) {
-  return {url, element};
-}
+import {createCategoryElement} from "./DateGenerator";
+import {ClientPath} from "./Path";
 
 const category = [
   {
     mainCategory: "Domain",
     categoryElement: [
-      createCategoryElement('/member', 'member'),
-      createCategoryElement('/coupon', 'coupon'),
-      createCategoryElement('/meeting', 'meeting'),
-      createCategoryElement('/reservation', 'reservation')
+      createCategoryElement(ClientPath.member, 'Member'),
+      createCategoryElement(ClientPath.coupon, 'Coupon'),
+      createCategoryElement(ClientPath.meeting, 'Meeting'),
+      createCategoryElement(ClientPath.reservation, 'Reservation')
     ]
   },
   {
     mainCategory: "Utility",
     categoryElement: [
-      createCategoryElement('/coupon-creation', 'Create Coupon'),
-      createCategoryElement('/admin-account', 'Admin Account'),
+      createCategoryElement(ClientPath.couponCreation, 'Create Coupon'),
+      createCategoryElement(ClientPath.adminAccount, 'Admin Account'),
     ]
   }
 ];
