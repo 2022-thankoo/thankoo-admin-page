@@ -30,12 +30,6 @@ export const DateSelection = styled.input.attrs({type: 'date'})`
   border: 1.5px solid black;
 `;
 
-export const ListSelection = styled.select`
-  height: 22px;
-  width: 200px;
-  margin-bottom: 5px;
-`;
-
 export const SearchButton = styled.button.attrs({type: 'submit'})`
   margin-bottom: 5px;
 `;

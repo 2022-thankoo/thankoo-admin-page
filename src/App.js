@@ -4,6 +4,7 @@ import {RecoilRoot} from "recoil";
 import AsidePage from "./component/aside/Aside";
 import {ClientPath} from "./data/path";
 import Coupon from "./page/Coupon";
+import CouponCreation from "./page/couponCreation/CouponCreation";
 import category from "./data/asideCategory";
 import GlobalStyle from "./component/commonStyle/GlobalStyle";
 import Member from "./page/Member";
@@ -23,6 +24,7 @@ function App() {
             <Route path={ClientPath.coupon} element={<Coupon />}/>
             <Route path={ClientPath.meeting} element={<Meeting />}/>
             <Route path={ClientPath.reservation} element={<Reservation />}/>
+            <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
           </Routes>
         </Router>
       </RecoilRoot>

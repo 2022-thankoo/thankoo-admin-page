@@ -1,30 +1,41 @@
 import PropTypes from 'prop-types';
-
 import {FaSearch} from "react-icons/fa";
 
 import * as hs from './HeaderStyle';
-import {HeaderWrapper, ListSelection} from "./HeaderStyle";
+import OptionList from "../optionList/OptionList";
+import {useCallback, useState} from "react";
 
 function Header({searchOption}) {
 
+  const [searchOptions, setSearchOptions] = useState({
+    startDate: '',
+    endDate: '',
+    status: '',
+  });
+
+  const handleChange = useCallback((name, {target: {value}}) => {
+    setSearchOptions({...searchOptions, [name]: value})
+  }, [searchOptions]);
+
+  const handleSearch = () => {
+    console.log(searchOptions);
+  }
+
   return (
     <hs.Header>
-      <HeaderWrapper>
+      <hs.HeaderWrapper>
         <hs.DateBox>
-          <hs.DateSelection name="startDate"/>
+          <hs.DateSelection onChange={(e) => handleChange("startDate", e)}/>
           ~
-          <hs.DateSelection name="endDate"/>
+          <hs.DateSelection onChange={(e) => handleChange("endDate", e)}/>
         </hs.DateBox>
-        {searchOption.hasStatus &&
-          <ListSelection name="status">
-            {searchOption.statuses.map((status) =>
-              <option key={status + ""} value={status + ""}>
-                {status}
-              </option>
-            )}
-          </ListSelection>}
-        <hs.SearchButton><FaSearch /></hs.SearchButton>
-      </HeaderWrapper>
+        {searchOption.hasStatus
+          && <OptionList
+            options={searchOption.statuses}
+            handleChange={(e) => handleChange("status", e)}
+          />}
+        <hs.SearchButton onClick={handleSearch}><FaSearch/></hs.SearchButton>
+      </hs.HeaderWrapper>
     </hs.Header>
   )
 }
