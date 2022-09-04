@@ -19,11 +19,3 @@ export const TableBody = styled.tbody`
   height: 100%;
   overflow: scroll;
 `;
-
-export const DropDownWrapper = styled.div`
-  width: 120px;
-  height: auto;
-  position: absolute;
-  right: 50px;
-  background-color: #C1C1C1;
-`;

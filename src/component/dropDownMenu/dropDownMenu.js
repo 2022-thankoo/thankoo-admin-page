@@ -1,16 +1,16 @@
 import {IoIosArrowDown, IoIosArrowUp} from "react-icons/io";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import PropTypes from 'prop-types';
 
-import * as dls from "../dataList/DataListStyle";
+import * as dwms from "./dropDownMenuStyle";
 
 function DropDownMenu({menuList, selectedData}) {
 
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const handleShowDropDown = () => {
+  const handleShowDropDown = useCallback(() => {
     setShowDropDown(!showDropDown);
-  }
+  }, [showDropDown]);
 
   return (
     <>
@@ -18,7 +18,7 @@ function DropDownMenu({menuList, selectedData}) {
         ? <IoIosArrowUp onClick={handleShowDropDown}/>
         : <>
             <IoIosArrowDown onClick={handleShowDropDown}/>
-            <dls.DropDownWrapper>
+            <dwms.DropDownWrapper>
               {menuList.map(({value, handleClick}) =>
                 <button
                   key={value}
@@ -26,7 +26,7 @@ function DropDownMenu({menuList, selectedData}) {
                   onClick={() => handleClick(selectedData)}
                 >{value}</button>
               )}
-            </dls.DropDownWrapper>
+            </dwms.DropDownWrapper>
           </>
         }
     </>
