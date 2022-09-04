@@ -25,7 +25,6 @@ const TableBody = styled.tbody`
 
 function DataList() {
 
-  const [allSelected, setAllSelected] = useState(false);
   const [selectedList, setSelectedList] = useState([]);
   const idList = [1, 2];
 
@@ -45,7 +44,7 @@ function DataList() {
     <Table>
       <TableHeader>
         <tr>
-          <th><input type="checkbox" onClick={handleSelectAll} /></th>
+          <th><input type="checkbox" onClick={e => handleSelectAll(e)} /></th>
           <th>id</th>
           <th>name</th>
           <th>email</th>
