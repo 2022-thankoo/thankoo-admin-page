@@ -4,9 +4,15 @@ import {useCallback, useState} from "react";
 
 import * as dls from './DataListStyle';
 import DropDownMenu from "../dropDownMenu/dropDownMenu";
+import ModifyDataModal from "../modal/modifyDataModal/modifyDataModal";
+import {useRecoilState} from "recoil";
+import modalOnOff from "../../globalState/modalOnOff";
 
 function DataList() {
 
+  const [openModifyDataModal, setOpenModifyDataModal] = useRecoilState(modalOnOff);
+
+  const [modifyTarget, setModifyTarget] = useState({});
   const [selectedIds, setSelectedIds] = useState([]);
   const tableHeaders = ["id", "name", "email"];
   const [dropDownList] = useState([{
@@ -41,46 +47,54 @@ function DataList() {
     console.log(confirmDelete, id);
   }
 
+  const handleModifyDataButton = useCallback((targetId) => {
+    setOpenModifyDataModal(!openModifyDataModal);
+    setModifyTarget(tableRows.filter(({id}) => id === targetId)[0]);
+  }, [openModifyDataModal, tableRows]);
+
   return (
-    <dls.Table>
-      <dls.TableHeader>
-        <tr>
-          <th><input type="checkbox" onChange={e => handleSelectAll(e)}/></th>
-          {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
-          <th>
-            action
-            <DropDownMenu
-              menuList={dropDownList}
-              selectedData={selectedIds}
-            />
-          </th>
-        </tr>
-      </dls.TableHeader>
-      <dls.TableBody>
-        {tableRows.map(({id, ...data}) => {
-            return (<dls.Row key={id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    onChange={e => handleSelect(e, id)}
-                    checked={selectedIds.includes(id)}
-                  />
-                </td>
-                {Object.values({id, ...data}).map(d => <td key={d}>{d}</td>)}
-                <td>
-                  <button onClick={() => handleDeleteRow(id)}>
-                    <RiDeleteBin5Fill/>
-                  </button>
-                  <button>
-                    <GiAutoRepair/>
-                  </button>
-                </td>
-              </dls.Row>
-            )
-          }
-        )}
-      </dls.TableBody>
-    </dls.Table>
+    <>
+      <dls.Table>
+        <dls.TableHeader>
+          <tr>
+            <th><input type="checkbox" onChange={e => handleSelectAll(e)}/></th>
+            {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
+            <th>
+              action
+              <DropDownMenu
+                menuList={dropDownList}
+                selectedData={selectedIds}
+              />
+            </th>
+          </tr>
+        </dls.TableHeader>
+        <dls.TableBody>
+          {tableRows.map(({id, ...data}) => {
+              return (<dls.Row key={id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      onChange={e => handleSelect(e, id)}
+                      checked={selectedIds.includes(id)}
+                    />
+                  </td>
+                  {Object.values({id, ...data}).map(d => <td key={d}>{d}</td>)}
+                  <td>
+                    <button onClick={() => handleDeleteRow(id)}>
+                      <RiDeleteBin5Fill/>
+                    </button>
+                    <button onClick={() => handleModifyDataButton(id)}>
+                      <GiAutoRepair/>
+                    </button>
+                  </td>
+                </dls.Row>
+              )
+            }
+          )}
+        </dls.TableBody>
+      </dls.Table>
+      {openModifyDataModal && <ModifyDataModal target={modifyTarget}/>}
+    </>
   );
 }
 
