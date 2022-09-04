@@ -1,5 +1,5 @@
-import {createCategoryElement} from "./DateGenerator";
-import {ClientPath} from "./Path";
+import {createCategoryElement} from "./dateGenerator";
+import {ClientPath} from "./path";
 
 const category = [
   {

@@ -1,5 +1,5 @@
 import Header from "../component/header/Header";
-import SearchOption from "../data/SearchOption";
+import SearchOption from "../data/searchOption";
 import DataList from "../component/dataList/DataList";
 import PageWrapper from "../component/commonStyle/PageWrapper";
 

@@ -2,7 +2,7 @@ import {IoIosArrowDown, IoIosArrowUp} from "react-icons/io";
 import {useCallback, useState} from "react";
 import PropTypes from 'prop-types';
 
-import * as dwms from "./dropDownMenuStyle";
+import * as dwms from "./DropDownMenuStyle";
 
 function DropDownMenu({menuList, selectedData}) {
 

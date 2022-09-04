@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import {useCallback, useState} from "react";
 import equal from 'deep-equal';
 
-import CommonModalBox from "../commonModal";
-import * as mdms from './modifyDataModalStyle';
-import {InputNewData} from "./modifyDataModalStyle";
+import CommonModalBox from "../CommonModal";
+import * as mdms from './ModifyDataModalStyle';
+import {InputNewData} from "./ModifyDataModalStyle";
 
 function ModifyDataModal({target}) {
 

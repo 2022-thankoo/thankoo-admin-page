@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {RecoilRoot} from "recoil";
 
 import AsidePage from "./component/aside/Aside";
-import {ClientPath} from "./data/Path";
+import {ClientPath} from "./data/path";
 import Coupon from "./page/Coupon";
-import category from "./data/AsideCategory";
+import category from "./data/asideCategory";
 import GlobalStyle from "./component/commonStyle/GlobalStyle";
 import Member from "./page/Member";
 import Meeting from "./page/Meeting";

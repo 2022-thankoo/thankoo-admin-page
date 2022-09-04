@@ -3,8 +3,8 @@ import {GiAutoRepair} from "react-icons/gi";
 import {useCallback, useState} from "react";
 
 import * as dls from './DataListStyle';
-import DropDownMenu from "../dropDownMenu/dropDownMenu";
-import ModifyDataModal from "../modal/modifyDataModal/modifyDataModal";
+import DropDownMenu from "../dropDownMenu/DropDownMenu";
+import ModifyDataModal from "../modal/modifyDataModal/ModifyDataModal";
 import {useRecoilState} from "recoil";
 import modalOnOff from "../../globalState/modalOnOff";
 

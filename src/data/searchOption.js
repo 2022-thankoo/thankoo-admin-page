@@ -1,4 +1,4 @@
-import {makeStatus} from "./DateGenerator";
+import {makeStatus} from "./dateGenerator";
 
 const blankStatus = "상태 선택";
 
