@@ -35,6 +35,12 @@ function DataList() {
     setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
   }, [selectedIds]);
 
+  const handleDeleteRow = (id) => {
+    // eslint-disable-next-line no-restricted-globals
+    const confirmDelete = confirm(`정말 삭제하겠습니까?`);
+    console.log(confirmDelete, id);
+  }
+
   return (
     <dls.Table>
       <dls.TableHeader>
@@ -62,7 +68,7 @@ function DataList() {
                 </td>
                 {Object.values({id, ...data}).map(d => <td key={d}>{d}</td>)}
                 <td>
-                  <button>
+                  <button onClick={() => handleDeleteRow(id)}>
                     <RiDeleteBin5Fill/>
                   </button>
                   <button>
