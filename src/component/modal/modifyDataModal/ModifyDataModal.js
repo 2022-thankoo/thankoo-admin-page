@@ -11,13 +11,13 @@ function ModifyDataModal({target}) {
   const [modifiedData, setModifiedData] = useState(Object.assign(target));
   const [targetData] = useState(Object.entries(target));
 
-  const handleModifyData = useCallback(({target: {value, name}}) => {
+  const handleModifyData = ({target: {value, name}}) => {
     const newData = value === '' ? target[name] : value;
     setModifiedData(prevState => ({
       ...prevState,
         [name]: newData
     }));
-  }, [modifiedData]);
+  };
 
   const handleSubmitModify = () => {
     if (equal(target, modifiedData)) {

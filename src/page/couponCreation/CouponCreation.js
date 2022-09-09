@@ -10,17 +10,17 @@ function CouponCreation() {
     coach: '', couponType: '', coupons: 0, couponNumbers: []
   });
 
-  const handleChange = useCallback((optionName, value) => {
+  const handleChange = (optionName, value) => {
     setSelectedCouponOptions({
       ...selectedCouponOptions, [optionName]: value
     })
-  }, [selectedCouponOptions]);
+  };
 
-  const handleCreateCouponNumber = useCallback(() => {
+  const handleCreateCouponNumber = () => {
     setSelectedCouponOptions({
       ...selectedCouponOptions, couponNumbers: generateRandomString(selectedCouponOptions.coupons, 8)
     });
-  }, [selectedCouponOptions]);
+  };
 
   const handleSubmitCouponNumber = () => {
     console.log(selectedCouponOptions);

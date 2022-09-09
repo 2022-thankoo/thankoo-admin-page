@@ -8,9 +8,9 @@ function DropDownMenu({menuList, selectedData}) {
 
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const handleShowDropDown = useCallback(() => {
+  const handleShowDropDown = () => {
     setShowDropDown(!showDropDown);
-  }, [showDropDown]);
+  };
 
   return (
     <>

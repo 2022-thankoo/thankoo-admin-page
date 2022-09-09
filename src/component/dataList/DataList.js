@@ -29,17 +29,17 @@ function DataList() {
   const idList = [1, 2];
   /////////////////////////////
 
-  const handleSelectAll = useCallback((checked) => {
+  const handleSelectAll = (checked) => {
     setSelectedIds(checked ? idList : []);
-  }, [idList]);
+  };
 
-  const handleSelect = useCallback((checked, id) => {
+  const handleSelect = (checked, id) => {
     if (checked) {
       setSelectedIds([...selectedIds, id]);
       return;
     }
     setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
-  }, [selectedIds]);
+  };
 
   const handleDeleteRow = (id) => {
     // eslint-disable-next-line no-restricted-globals
@@ -47,10 +47,10 @@ function DataList() {
     console.log(confirmDelete, id);
   }
 
-  const handleModifyDataButton = useCallback((targetId) => {
+  const handleModifyDataButton = (targetId) => {
     setOpenModifyDataModal(!openModifyDataModal);
     setModifyTarget(tableRows.filter(({id}) => id === targetId)[0]);
-  }, [openModifyDataModal, tableRows]);
+  };
 
   return (
     <>

@@ -13,9 +13,9 @@ function Header({searchOption}) {
     status: '',
   });
 
-  const handleChange = useCallback((name, value) => {
+  const handleChange = (name, value) => {
     setSearchOptions({...searchOptions, [name]: value})
-  }, [searchOptions]);
+  };
 
   const handleSearch = () => {
     console.log(searchOptions);
