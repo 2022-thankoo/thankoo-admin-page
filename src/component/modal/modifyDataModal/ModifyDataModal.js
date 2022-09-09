@@ -3,7 +3,7 @@ import {useState} from "react";
 import equal from 'deep-equal';
 
 import CommonModalBox from "../CommonModal";
-import * as mdms from './ModifyDataModalStyle';
+import * as Mdms from './ModifyDataModalStyle';
 import {InputNewData} from "./ModifyDataModalStyle";
 
 function ModifyDataModal({target}) {
@@ -29,12 +29,12 @@ function ModifyDataModal({target}) {
   return (
     <>
       <CommonModalBox>
-        <mdms.ModifyDataModalWrapper>
+        <Mdms.ModifyDataModalWrapper>
           {targetData.map(data => {
             const targetName = data[0];
             const targetData = data[1] + "";
               return (
-                <mdms.TargetWrapper key={targetName}>
+                <Mdms.TargetWrapper key={targetName}>
                   <label htmlFor={targetName}>{targetName}</label>
                   <InputNewData
                     type="text"
@@ -42,14 +42,14 @@ function ModifyDataModal({target}) {
                     name={targetName}
                     onChange={handleModifyData}
                   />
-                </mdms.TargetWrapper>
+                </Mdms.TargetWrapper>
               );
           }
           )}
-          <mdms.SubmitModifyButton type='button' onClick={handleSubmitModify}>
+          <Mdms.SubmitModifyButton type='button' onClick={handleSubmitModify}>
             submit
-          </mdms.SubmitModifyButton>
-        </mdms.ModifyDataModalWrapper>
+          </Mdms.SubmitModifyButton>
+        </Mdms.ModifyDataModalWrapper>
       </CommonModalBox>
     </>
   )

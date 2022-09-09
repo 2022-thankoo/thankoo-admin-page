@@ -1,17 +1,17 @@
 import PropTypes from "prop-types";
 
-import * as ols from './OptionListStyle';
+import * as Ols from './OptionListStyle';
 
 function OptionList({options, handleChange}) {
 
   return (
-    <ols.ListSelection onChange={handleChange}>
+    <Ols.ListSelection onChange={handleChange}>
       {options.map(({actualValue, showedValue}) =>
         <option key={actualValue.toString()} value={actualValue.toString()}>
           {showedValue}
         </option>
       )}
-    </ols.ListSelection>
+    </Ols.ListSelection>
   );
 }
 

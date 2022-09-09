@@ -2,7 +2,7 @@ import {RiDeleteBin5Fill} from "react-icons/ri";
 import {GiAutoRepair} from "react-icons/gi";
 import {useState} from "react";
 
-import * as dls from './DataListStyle';
+import * as Dls from './DataListStyle';
 import DropDownMenu from "../dropDownMenu/DropDownMenu";
 import ModifyDataModal from "../modal/modifyDataModal/ModifyDataModal";
 import {useRecoilState} from "recoil";
@@ -54,8 +54,8 @@ function DataList() {
 
   return (
     <>
-      <dls.Table>
-        <dls.TableHeader>
+      <Dls.Table>
+        <Dls.TableHeader>
           <tr>
             <th><input type="checkbox" onChange={e => {handleSelectAll(e.target.checked)}}/></th>
             {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
@@ -67,10 +67,10 @@ function DataList() {
               />
             </th>
           </tr>
-        </dls.TableHeader>
-        <dls.TableBody>
+        </Dls.TableHeader>
+        <Dls.TableBody>
           {tableRows.map(({id, ...data}) => {
-              return (<dls.Row key={id}>
+              return (<Dls.Row key={id}>
                   <td>
                     <input
                       type="checkbox"
@@ -87,12 +87,12 @@ function DataList() {
                       <GiAutoRepair/>
                     </button>
                   </td>
-                </dls.Row>
+                </Dls.Row>
               )
             }
           )}
-        </dls.TableBody>
-      </dls.Table>
+        </Dls.TableBody>
+      </Dls.Table>
       {openModifyDataModal && <ModifyDataModal target={modifyTarget}/>}
     </>
   );

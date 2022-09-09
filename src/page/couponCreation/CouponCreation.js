@@ -1,6 +1,6 @@
 import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
-import * as ccs from "./couponCreationStyle";
+import * as Ccs from "./CouponCreationStyle";
 import {useState} from "react";
 import {generateRandomString} from "../../data/dateGenerator";
 
@@ -26,8 +26,8 @@ function CouponCreation() {
     console.log(selectedCouponOptions);
   }
 
-  return (<ccs.CouponCreationPageWrapper>
-    <ccs.Box>
+  return (<Ccs.CouponCreationPageWrapper>
+    <Ccs.Box>
       <OptionList
         options={couponOptions.coaches}
         handleChange={(e) => {handleChange(selectedCouponOptions, "coach", e.target.value)}}
@@ -36,25 +36,25 @@ function CouponCreation() {
         options={couponOptions.couponTypes}
         handleChange={(e) => {handleChange(selectedCouponOptions, "couponType", e.target.value)}}
       />
-      <ccs.InputTheNumberOfCoupon
+      <Ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
         onChange={(e) => {handleChange(selectedCouponOptions, "coupons", e.target.value)}}
       />
-      <ccs.CouponCreationPageButton type='button' onClick={() => {handleCreateCouponNumber(selectedCouponOptions)}}>
+      <Ccs.CouponCreationPageButton type='button' onClick={() => {handleCreateCouponNumber(selectedCouponOptions)}}>
         Generate coupon number
-      </ccs.CouponCreationPageButton>
-    </ccs.Box>
-    {selectedCouponOptions.couponNumbers.length > 0 && <ccs.Box>
+      </Ccs.CouponCreationPageButton>
+    </Ccs.Box>
+    {selectedCouponOptions.couponNumbers.length > 0 && <Ccs.Box>
       <h1>Result</h1>
       {selectedCouponOptions.couponNumbers
         .map(couponNumber => <p key={couponNumber}>{couponNumber}</p>)}
-      <ccs.CouponCreationPageButton type='button' onClick={handleSubmitCouponNumber}>
+      <Ccs.CouponCreationPageButton type='button' onClick={handleSubmitCouponNumber}>
         Create coupon
-      </ccs.CouponCreationPageButton>
-    </ccs.Box>}
-  </ccs.CouponCreationPageWrapper>);
+      </Ccs.CouponCreationPageButton>
+    </Ccs.Box>}
+  </Ccs.CouponCreationPageWrapper>);
 }
 
 export default CouponCreation;
