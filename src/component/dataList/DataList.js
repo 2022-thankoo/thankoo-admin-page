@@ -1,6 +1,6 @@
 import {RiDeleteBin5Fill} from "react-icons/ri";
 import {GiAutoRepair} from "react-icons/gi";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 
 import * as dls from './DataListStyle';
 import DropDownMenu from "../dropDownMenu/DropDownMenu";

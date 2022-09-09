@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {useCallback, useState} from "react";
+import {useState} from "react";
 import equal from 'deep-equal';
 
 import CommonModalBox from "../CommonModal";

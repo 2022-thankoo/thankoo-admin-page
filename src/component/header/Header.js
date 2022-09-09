@@ -3,7 +3,7 @@ import {FaSearch} from "react-icons/fa";
 
 import * as hs from './HeaderStyle';
 import OptionList from "../optionList/OptionList";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 
 function Header({searchOption}) {
 

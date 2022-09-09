@@ -1,7 +1,7 @@
 import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
 import * as ccs from "./couponCreationStyle";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 import {generateRandomString} from "../../data/dateGenerator";
 
 function CouponCreation() {
@@ -10,13 +10,13 @@ function CouponCreation() {
     coach: '', couponType: '', coupons: 0, couponNumbers: []
   });
 
-  const handleChange = (optionName, value) => {
+  const handleChange = (selectedCouponOptions, optionName, value) => {
     setSelectedCouponOptions({
       ...selectedCouponOptions, [optionName]: value
     })
   };
 
-  const handleCreateCouponNumber = () => {
+  const handleCreateCouponNumber = (selectedCouponOptions) => {
     setSelectedCouponOptions({
       ...selectedCouponOptions, couponNumbers: generateRandomString(selectedCouponOptions.coupons, 8)
     });
@@ -30,19 +30,19 @@ function CouponCreation() {
     <ccs.Box>
       <OptionList
         options={couponOptions.coaches}
-        handleChange={(e) => {handleChange("coach", e.target.value)}}
+        handleChange={(e) => {handleChange(selectedCouponOptions, "coach", e.target.value)}}
       />
       <OptionList
         options={couponOptions.couponTypes}
-        handleChange={(e) => {handleChange("couponType", e.target.value)}}
+        handleChange={(e) => {handleChange(selectedCouponOptions, "couponType", e.target.value)}}
       />
       <ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
-        onChange={(e) => {handleChange("coupons", e.target.value)}}
+        onChange={(e) => {handleChange(selectedCouponOptions, "coupons", e.target.value)}}
       />
-      <ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
+      <ccs.CouponCreationPageButton type='button' onClick={() => {handleCreateCouponNumber(selectedCouponOptions)}}>
         Generate coupon number
       </ccs.CouponCreationPageButton>
     </ccs.Box>
