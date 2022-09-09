@@ -29,11 +29,11 @@ function DataList() {
   const idList = [1, 2];
   /////////////////////////////
 
-  const handleSelectAll = useCallback(({target: {checked}}) => {
+  const handleSelectAll = useCallback((checked) => {
     setSelectedIds(checked ? idList : []);
   }, [idList]);
 
-  const handleSelect = useCallback(({target: {checked}}, id) => {
+  const handleSelect = useCallback((checked, id) => {
     if (checked) {
       setSelectedIds([...selectedIds, id]);
       return;
@@ -57,7 +57,7 @@ function DataList() {
       <dls.Table>
         <dls.TableHeader>
           <tr>
-            <th><input type="checkbox" onChange={e => handleSelectAll(e)}/></th>
+            <th><input type="checkbox" onChange={e => handleSelectAll(e.target.checked)}/></th>
             {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
             <th>
               action
@@ -74,7 +74,7 @@ function DataList() {
                   <td>
                     <input
                       type="checkbox"
-                      onChange={e => handleSelect(e, id)}
+                      onChange={e => handleSelect(e.target.checked, id)}
                       checked={selectedIds.includes(id)}
                     />
                   </td>

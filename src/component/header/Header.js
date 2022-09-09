@@ -13,7 +13,7 @@ function Header({searchOption}) {
     status: '',
   });
 
-  const handleChange = useCallback((name, {target: {value}}) => {
+  const handleChange = useCallback((name, value) => {
     setSearchOptions({...searchOptions, [name]: value})
   }, [searchOptions]);
 
@@ -25,9 +25,9 @@ function Header({searchOption}) {
     <hs.Header>
       <hs.HeaderWrapper>
         <hs.DateBox>
-          <hs.DateSelection onChange={(e) => handleChange("startDate", e)}/>
+          <hs.DateSelection onChange={(e) => handleChange("startDate", e.target.value)}/>
           ~
-          <hs.DateSelection onChange={(e) => handleChange("endDate", e)}/>
+          <hs.DateSelection onChange={(e) => handleChange("endDate", e.target.value)}/>
         </hs.DateBox>
         {searchOption.hasStatus
           && <OptionList

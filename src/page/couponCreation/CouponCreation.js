@@ -10,7 +10,7 @@ function CouponCreation() {
     coach: '', couponType: '', coupons: 0, couponNumbers: []
   });
 
-  const handleChange = useCallback((optionName, {target: {value = ''}}) => {
+  const handleChange = useCallback((optionName, value) => {
     setSelectedCouponOptions({
       ...selectedCouponOptions, [optionName]: value
     })
@@ -30,17 +30,17 @@ function CouponCreation() {
     <ccs.Box>
       <OptionList
         options={couponOptions.coaches}
-        handleChange={(e) => handleChange("coach", e)}
+        handleChange={(e) => handleChange("coach", e.target.value)}
       />
       <OptionList
         options={couponOptions.couponTypes}
-        handleChange={(e) => handleChange("couponType", e)}
+        handleChange={(e) => handleChange("couponType", e.target.value)}
       />
       <ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
-        onChange={(e) => handleChange("coupons", e)}
+        onChange={(e) => handleChange("coupons", e.target.value)}
       />
       <ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
         Generate coupon number
