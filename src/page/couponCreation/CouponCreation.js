@@ -30,19 +30,27 @@ function CouponCreation() {
     <Ccs.Box>
       <OptionList
         options={couponOptions.coaches}
-        handleChange={(e) => {handleChange(selectedCouponOptions, "coach", e.target.value)}}
+        handleChange={(e) => {
+          handleChange(selectedCouponOptions, "coach", e.target.value)
+        }}
       />
       <OptionList
         options={couponOptions.couponTypes}
-        handleChange={(e) => {handleChange(selectedCouponOptions, "couponType", e.target.value)}}
+        handleChange={(e) => {
+          handleChange(selectedCouponOptions, "couponType", e.target.value)
+        }}
       />
       <Ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
-        onChange={(e) => {handleChange(selectedCouponOptions, "coupons", e.target.value)}}
+        onChange={(e) => {
+          handleChange(selectedCouponOptions, "coupons", e.target.value)
+        }}
       />
-      <Ccs.CouponCreationPageButton type='button' onClick={() => {handleCreateCouponNumber(selectedCouponOptions)}}>
+      <Ccs.CouponCreationPageButton type='button' onClick={() => {
+        handleCreateCouponNumber(selectedCouponOptions)
+      }}>
         Generate coupon number
       </Ccs.CouponCreationPageButton>
     </Ccs.Box>

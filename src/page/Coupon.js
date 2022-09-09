@@ -7,7 +7,7 @@ function CouponPage() {
   return (
     <PageWrapper>
       <Header searchOption={SearchOption.coupon}/>
-      <DataList />
+      <DataList/>
     </PageWrapper>
   )
 }

@@ -15,7 +15,7 @@ function ModifyDataModal({target}) {
     const newData = value === '' ? target[name] : value;
     setModifiedData(prevState => ({
       ...prevState,
-        [name]: newData
+      [name]: newData
     }));
   };
 
@@ -31,8 +31,8 @@ function ModifyDataModal({target}) {
       <CommonModalBox>
         <Mdms.ModifyDataModalWrapper>
           {targetData.map(data => {
-            const targetName = data[0];
-            const targetData = data[1] + "";
+              const targetName = data[0];
+              const targetData = data[1] + "";
               return (
                 <Mdms.TargetWrapper key={targetName}>
                   <label htmlFor={targetName}>{targetName}</label>
@@ -44,7 +44,7 @@ function ModifyDataModal({target}) {
                   />
                 </Mdms.TargetWrapper>
               );
-          }
+            }
           )}
           <Mdms.SubmitModifyButton type='button' onClick={handleSubmitModify}>
             submit

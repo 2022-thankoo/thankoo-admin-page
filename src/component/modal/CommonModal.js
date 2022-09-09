@@ -20,7 +20,7 @@ const CommonModalBox = ({children}) => {
       <cms.ModalOverlay>
         <cms.ModalBox>
           <CloseModalButton type='button' onClick={handleModalOnOff}>
-            <AiOutlineClose />
+            <AiOutlineClose/>
           </CloseModalButton>
           {children}
         </cms.ModalBox>

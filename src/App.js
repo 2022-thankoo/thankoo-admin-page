@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {RecoilRoot} from "recoil";
 
 import AsidePage from "./component/aside/Aside";
@@ -17,13 +17,13 @@ function App() {
     <>
       <RecoilRoot>
         <Router>
-          <GlobalStyle />
+          <GlobalStyle/>
           <AsidePage category={category}/>
           <Routes>
-            <Route path={ClientPath.member} element={<Member />}/>
-            <Route path={ClientPath.coupon} element={<Coupon />}/>
-            <Route path={ClientPath.meeting} element={<Meeting />}/>
-            <Route path={ClientPath.reservation} element={<Reservation />}/>
+            <Route path={ClientPath.member} element={<Member/>}/>
+            <Route path={ClientPath.coupon} element={<Coupon/>}/>
+            <Route path={ClientPath.meeting} element={<Meeting/>}/>
+            <Route path={ClientPath.reservation} element={<Reservation/>}/>
             <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
           </Routes>
         </Router>

@@ -17,18 +17,20 @@ function DropDownMenu({menuList, selectedData}) {
       {!showDropDown
         ? <IoIosArrowUp onClick={handleShowDropDown}/>
         : <>
-            <IoIosArrowDown onClick={handleShowDropDown}/>
-            <Dwms.DropDownWrapper>
-              {menuList.map(({value, handleClick}) =>
-                <button
-                  key={value}
-                  type='button'
-                  onClick={() => {handleClick(selectedData)}}
-                >{value}</button>
-              )}
-            </Dwms.DropDownWrapper>
-          </>
-        }
+          <IoIosArrowDown onClick={handleShowDropDown}/>
+          <Dwms.DropDownWrapper>
+            {menuList.map(({value, handleClick}) =>
+              <button
+                key={value}
+                type='button'
+                onClick={() => {
+                  handleClick(selectedData)
+                }}
+              >{value}</button>
+            )}
+          </Dwms.DropDownWrapper>
+        </>
+      }
     </>
   );
 }
