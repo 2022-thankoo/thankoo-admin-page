@@ -1,12 +1,12 @@
-export function createCategoryElement(url, element) {
+export const createCategoryElement = (url, element) => {
   return {url, element};
 }
 
-export function makeStatus(hasStatus, statuses) {
+export const makeStatus = (hasStatus, statuses) => {
   return {hasStatus, statuses};
 }
 
-export function makeOption(actualValue, showedValue) {
+export const makeOption = (actualValue, showedValue) => {
   return {actualValue, showedValue}
 }
 
