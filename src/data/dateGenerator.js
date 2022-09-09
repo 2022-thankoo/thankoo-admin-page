@@ -1,3 +1,5 @@
+import {string} from "prop-types";
+
 export function createCategoryElement(url, element) {
   return {url, element};
 }
@@ -10,16 +12,15 @@ export function makeOption(actualValue, showedValue) {
   return {actualValue, showedValue}
 }
 
-export function generateRandomString(coupons, stringLength) {
-  const randomStrings = [];
-  for (let i = 0; i < coupons; i++) {
-    const randomString = Math.random()
+export const generateRandomString = (arrayLength, stringLength) => {
+  const randomStrings = new Set();
+
+  while (randomStrings.size !== arrayLength) {
+    const randomStrings = Math.random()
       .toString(36)
       .substring(2, 2 + stringLength);
-    if (randomStrings.includes(randomString)) {
-      continue;
-    }
-    randomStrings.push(randomString);
+    randomStrings.add(randomStrings);
   }
-  return randomStrings;
+
+  return [...randomStrings];
 }
