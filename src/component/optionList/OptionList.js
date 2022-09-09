@@ -7,7 +7,7 @@ function OptionList({options, handleChange}) {
   return (
     <ols.ListSelection onChange={handleChange}>
       {options.map(({actualValue, showedValue}) =>
-        <option key={actualValue + ""} value={actualValue + ""}>
+        <option key={actualValue.toString()} value={actualValue.toString()}>
           {showedValue}
         </option>
       )}
