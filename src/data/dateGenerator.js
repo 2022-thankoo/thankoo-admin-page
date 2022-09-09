@@ -1,5 +1,3 @@
-import {string} from "prop-types";
-
 export function createCategoryElement(url, element) {
   return {url, element};
 }
@@ -14,13 +12,11 @@ export function makeOption(actualValue, showedValue) {
 
 export const generateRandomString = (arrayLength, stringLength) => {
   const randomStrings = new Set();
-
-  while (randomStrings.size !== arrayLength) {
-    const randomStrings = Math.random()
+  while (randomStrings.size < arrayLength) {
+    const randomString = Math.random()
       .toString(36)
       .substring(2, 2 + stringLength);
-    randomStrings.add(randomStrings);
+    randomStrings.add(randomString);
   }
-
   return [...randomStrings];
 }
