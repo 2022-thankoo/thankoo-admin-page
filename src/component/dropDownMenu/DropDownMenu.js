@@ -23,7 +23,7 @@ function DropDownMenu({menuList, selectedData}) {
                 <button
                   key={value}
                   type='button'
-                  onClick={() => handleClick(selectedData)}
+                  onClick={() => {handleClick(selectedData)}}
                 >{value}</button>
               )}
             </dwms.DropDownWrapper>

@@ -25,14 +25,14 @@ function Header({searchOption}) {
     <hs.Header>
       <hs.HeaderWrapper>
         <hs.DateBox>
-          <hs.DateSelection onChange={(e) => handleChange("startDate", e.target.value)}/>
+          <hs.DateSelection onChange={(e) => {handleChange("startDate", e.target.value)}}/>
           ~
-          <hs.DateSelection onChange={(e) => handleChange("endDate", e.target.value)}/>
+          <hs.DateSelection onChange={(e) => {handleChange("endDate", e.target.value)}}/>
         </hs.DateBox>
         {searchOption.hasStatus
           && <OptionList
             options={searchOption.statuses}
-            handleChange={(e) => handleChange("status", e)}
+            handleChange={(e) => {handleChange("status", e)}}
           />}
         <hs.SearchButton onClick={handleSearch}><FaSearch/></hs.SearchButton>
       </hs.HeaderWrapper>

@@ -57,7 +57,7 @@ function DataList() {
       <dls.Table>
         <dls.TableHeader>
           <tr>
-            <th><input type="checkbox" onChange={e => handleSelectAll(e.target.checked)}/></th>
+            <th><input type="checkbox" onChange={e => {handleSelectAll(e.target.checked)}}/></th>
             {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
             <th>
               action
@@ -74,7 +74,7 @@ function DataList() {
                   <td>
                     <input
                       type="checkbox"
-                      onChange={e => handleSelect(e.target.checked, id)}
+                      onChange={e => {handleSelect(e.target.checked, id)}}
                       checked={selectedIds.includes(id)}
                     />
                   </td>
@@ -83,7 +83,7 @@ function DataList() {
                     <button onClick={() => handleDeleteRow(id)}>
                       <RiDeleteBin5Fill/>
                     </button>
-                    <button onClick={() => handleModifyDataButton(id)}>
+                    <button onClick={() => {handleModifyDataButton(id)}}>
                       <GiAutoRepair/>
                     </button>
                   </td>

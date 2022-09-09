@@ -30,17 +30,17 @@ function CouponCreation() {
     <ccs.Box>
       <OptionList
         options={couponOptions.coaches}
-        handleChange={(e) => handleChange("coach", e.target.value)}
+        handleChange={(e) => {handleChange("coach", e.target.value)}}
       />
       <OptionList
         options={couponOptions.couponTypes}
-        handleChange={(e) => handleChange("couponType", e.target.value)}
+        handleChange={(e) => {handleChange("couponType", e.target.value)}}
       />
       <ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
-        onChange={(e) => handleChange("coupons", e.target.value)}
+        onChange={(e) => {handleChange("coupons", e.target.value)}}
       />
       <ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
         Generate coupon number
