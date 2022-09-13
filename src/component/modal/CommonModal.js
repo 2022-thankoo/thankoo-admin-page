@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import {AiOutlineClose} from "react-icons/ai";
 
 import Portal from "./Portal";
-import * as cms from "./commonModalStyle";
-import {CloseModalButton} from "./commonModalStyle";
+import * as cms from "./CommonModalStyle";
+import {CloseModalButton} from "./CommonModalStyle";
 import {useRecoilState} from "recoil";
 import modalOnOff from "../../globalState/modalOnOff";
 
@@ -20,7 +20,7 @@ const CommonModalBox = ({children}) => {
       <cms.ModalOverlay>
         <cms.ModalBox>
           <CloseModalButton type='button' onClick={handleModalOnOff}>
-            <AiOutlineClose />
+            <AiOutlineClose/>
           </CloseModalButton>
           {children}
         </cms.ModalBox>

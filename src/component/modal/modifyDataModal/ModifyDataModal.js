@@ -1,23 +1,23 @@
 import PropTypes from 'prop-types';
-import {useCallback, useState} from "react";
+import {useState} from "react";
 import equal from 'deep-equal';
 
-import CommonModalBox from "../commonModal";
-import * as mdms from './modifyDataModalStyle';
-import {InputNewData} from "./modifyDataModalStyle";
+import CommonModalBox from "../CommonModal";
+import * as Mdms from './ModifyDataModalStyle';
+import {InputNewData} from "./ModifyDataModalStyle";
 
 function ModifyDataModal({target}) {
 
   const [modifiedData, setModifiedData] = useState(Object.assign(target));
   const [targetData] = useState(Object.entries(target));
 
-  const handleModifyData = useCallback(({target: {value, name}}) => {
+  const handleModifyData = ({target: {value, name}}) => {
     const newData = value === '' ? target[name] : value;
     setModifiedData(prevState => ({
       ...prevState,
-        [name]: newData
+      [name]: newData
     }));
-  }, [modifiedData]);
+  };
 
   const handleSubmitModify = () => {
     if (equal(target, modifiedData)) {
@@ -29,12 +29,12 @@ function ModifyDataModal({target}) {
   return (
     <>
       <CommonModalBox>
-        <mdms.ModifyDataModalWrapper>
+        <Mdms.ModifyDataModalWrapper>
           {targetData.map(data => {
-            const targetName = data[0];
-            const targetData = data[1] + "";
+              const targetName = data[0];
+              const targetData = data[1] + "";
               return (
-                <mdms.TargetWrapper key={targetName}>
+                <Mdms.TargetWrapper key={targetName}>
                   <label htmlFor={targetName}>{targetName}</label>
                   <InputNewData
                     type="text"
@@ -42,14 +42,14 @@ function ModifyDataModal({target}) {
                     name={targetName}
                     onChange={handleModifyData}
                   />
-                </mdms.TargetWrapper>
+                </Mdms.TargetWrapper>
               );
-          }
+            }
           )}
-          <mdms.SubmitModifyButton type='button' onClick={handleSubmitModify}>
+          <Mdms.SubmitModifyButton type='button' onClick={handleSubmitModify}>
             submit
-          </mdms.SubmitModifyButton>
-        </mdms.ModifyDataModalWrapper>
+          </Mdms.SubmitModifyButton>
+        </Mdms.ModifyDataModalWrapper>
       </CommonModalBox>
     </>
   )

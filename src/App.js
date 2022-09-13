@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import {RecoilRoot} from "recoil";
 
 import AsidePage from "./component/aside/Aside";
-import {ClientPath} from "./data/Path";
+import {ClientPath} from "./data/path";
 import Coupon from "./page/Coupon";
-import category from "./data/AsideCategory";
+import CouponCreation from "./page/couponCreation/CouponCreation";
+import category from "./data/asideCategory";
 import GlobalStyle from "./component/commonStyle/GlobalStyle";
 import Member from "./page/Member";
 import Meeting from "./page/Meeting";
@@ -16,13 +17,14 @@ function App() {
     <>
       <RecoilRoot>
         <Router>
-          <GlobalStyle />
+          <GlobalStyle/>
           <AsidePage category={category}/>
           <Routes>
-            <Route path={ClientPath.member} element={<Member />}/>
-            <Route path={ClientPath.coupon} element={<Coupon />}/>
-            <Route path={ClientPath.meeting} element={<Meeting />}/>
-            <Route path={ClientPath.reservation} element={<Reservation />}/>
+            <Route path={ClientPath.member} element={<Member/>}/>
+            <Route path={ClientPath.coupon} element={<Coupon/>}/>
+            <Route path={ClientPath.meeting} element={<Meeting/>}/>
+            <Route path={ClientPath.reservation} element={<Reservation/>}/>
+            <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
           </Routes>
         </Router>
       </RecoilRoot>

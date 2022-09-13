@@ -1,10 +1,10 @@
 import {RiDeleteBin5Fill} from "react-icons/ri";
 import {GiAutoRepair} from "react-icons/gi";
-import {useCallback, useState} from "react";
+import {useState} from "react";
 
-import * as dls from './DataListStyle';
-import DropDownMenu from "../dropDownMenu/dropDownMenu";
-import ModifyDataModal from "../modal/modifyDataModal/modifyDataModal";
+import * as Dls from './DataListStyle';
+import DropDownMenu from "../dropDownMenu/DropDownMenu";
+import ModifyDataModal from "../modal/modifyDataModal/ModifyDataModal";
 import {useRecoilState} from "recoil";
 import modalOnOff from "../../globalState/modalOnOff";
 
@@ -29,17 +29,17 @@ function DataList() {
   const idList = [1, 2];
   /////////////////////////////
 
-  const handleSelectAll = useCallback(({target: {checked}}) => {
+  const handleSelectAll = (checked) => {
     setSelectedIds(checked ? idList : []);
-  }, [idList]);
+  };
 
-  const handleSelect = useCallback(({target: {checked}}, id) => {
+  const handleSelect = (checked, id) => {
     if (checked) {
       setSelectedIds([...selectedIds, id]);
       return;
     }
     setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
-  }, [selectedIds]);
+  };
 
   const handleDeleteRow = (id) => {
     // eslint-disable-next-line no-restricted-globals
@@ -47,17 +47,19 @@ function DataList() {
     console.log(confirmDelete, id);
   }
 
-  const handleModifyDataButton = useCallback((targetId) => {
+  const handleModifyDataButton = (targetId) => {
     setOpenModifyDataModal(!openModifyDataModal);
     setModifyTarget(tableRows.filter(({id}) => id === targetId)[0]);
-  }, [openModifyDataModal, tableRows]);
+  };
 
   return (
     <>
-      <dls.Table>
-        <dls.TableHeader>
+      <Dls.Table>
+        <Dls.TableHeader>
           <tr>
-            <th><input type="checkbox" onChange={e => handleSelectAll(e)}/></th>
+            <th><input type="checkbox" onChange={e => {
+              handleSelectAll(e.target.checked)
+            }}/></th>
             {tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
             <th>
               action
@@ -67,14 +69,16 @@ function DataList() {
               />
             </th>
           </tr>
-        </dls.TableHeader>
-        <dls.TableBody>
+        </Dls.TableHeader>
+        <Dls.TableBody>
           {tableRows.map(({id, ...data}) => {
-              return (<dls.Row key={id}>
+              return (<Dls.Row key={id}>
                   <td>
                     <input
                       type="checkbox"
-                      onChange={e => handleSelect(e, id)}
+                      onChange={e => {
+                        handleSelect(e.target.checked, id)
+                      }}
                       checked={selectedIds.includes(id)}
                     />
                   </td>
@@ -83,16 +87,18 @@ function DataList() {
                     <button onClick={() => handleDeleteRow(id)}>
                       <RiDeleteBin5Fill/>
                     </button>
-                    <button onClick={() => handleModifyDataButton(id)}>
+                    <button onClick={() => {
+                      handleModifyDataButton(id)
+                    }}>
                       <GiAutoRepair/>
                     </button>
                   </td>
-                </dls.Row>
+                </Dls.Row>
               )
             }
           )}
-        </dls.TableBody>
-      </dls.Table>
+        </Dls.TableBody>
+      </Dls.Table>
       {openModifyDataModal && <ModifyDataModal target={modifyTarget}/>}
     </>
   );

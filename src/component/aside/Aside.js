@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types';
 
-import * as as from './AsideStyle';
+import * as As from './AsideStyle';
 
 function AsidePage({category}) {
 
   return (
-    <as.Aside>
-      <as.Title>Thankoo</as.Title>
+    <As.Aside>
+      <As.Title>Thankoo</As.Title>
       {category.map(({mainCategory, categoryElement}) => {
         return (
-          <as.CategoryList key={mainCategory}>
-            <as.ListTitle>{mainCategory}</as.ListTitle>
+          <As.CategoryList key={mainCategory}>
+            <As.ListTitle>{mainCategory}</As.ListTitle>
             {categoryElement.map(({url, element}) =>
-              <as.ListElement key={url}>
-                <as.ElementLink href={url}>{element}</as.ElementLink>
-              </as.ListElement>
+              <As.ListElement key={url}>
+                <As.ElementLink href={url}>{element}</As.ElementLink>
+              </As.ListElement>
             )}
-          </as.CategoryList>
+          </As.CategoryList>
         );
       })}
-    </as.Aside>
+    </As.Aside>
   );
 }
 
