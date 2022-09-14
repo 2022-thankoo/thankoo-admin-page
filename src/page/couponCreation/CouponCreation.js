@@ -1,25 +1,62 @@
+import {useFormik} from "formik";
+import * as yup from 'yup';
+
 import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
 import * as Ccs from "./CouponCreationStyle";
 import {useState} from "react";
 import {generateRandomString} from "../../data/dataGenerator";
+import {warningMessage} from "../../data/message";
+import {getCoaches, getCouponTypes} from "../../data/couponCreation";
 
 function CouponCreation() {
 
   const [selectedCouponOptions, setSelectedCouponOptions] = useState({
-    coach: '', couponType: '', coupons: 0, couponNumbers: []
+    coach: '',
+    couponType: '',
+    couponNumbers: []
   });
 
-  const handleChange = (selectedCouponOptions, optionName, value) => {
-    setSelectedCouponOptions({
-      ...selectedCouponOptions, [optionName]: value
-    })
+  const [actualCouponValue] = useState({
+    coachName: getCoaches(),
+    couponType: getCouponTypes(),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      coach: '',
+      couponType: '',
+      coupons: 0,
+    },
+    validationSchema: yup.object({
+      coach: yup.string()
+        .required(warningMessage.invalidCoach)
+        .oneOf([...actualCouponValue.coachName], warningMessage.invalidCoach),
+      couponType: yup.string()
+        .required(warningMessage.invalidCouponType)
+        .oneOf([...actualCouponValue.couponType], warningMessage.invalidCouponType),
+      coupons: yup.number()
+        .integer(warningMessage.couponNumberIsNotInteger)
+        .min(1, warningMessage.invalidCouponNumberMinRange)
+        .max(10, warningMessage.invalidCouponNumberMaxRange)
+    }),
+    onSubmit: ({coach, couponType, coupons}) => {
+      console.log(`submit ${coach} ${couponType}`);
+      setSelectedCouponOptions({
+        coach,
+        couponType,
+        couponNumbers: generateRandomString(coupons, 8)
+      });
+    }
+  });
+
+  const handleChange = (event) => {
+    formik.handleChange(event);
   };
 
-  const handleCreateCouponNumber = (selectedCouponOptions) => {
-    setSelectedCouponOptions({
-      ...selectedCouponOptions, couponNumbers: generateRandomString(selectedCouponOptions.coupons, 8)
-    });
+  const handleCreateCouponNumber = (event) => {
+    event.preventDefault();
+    formik.handleSubmit();
   };
 
   const handleSubmitCouponNumber = () => {
@@ -30,27 +67,35 @@ function CouponCreation() {
     <Ccs.Box>
       <OptionList
         options={couponOptions.coaches}
-        handleChange={(e) => {
-          handleChange(selectedCouponOptions, "coach", e.target.value)
-        }}
+        name="coach"
+        handleChange={handleChange}
       />
+      {formik.touched.coach
+        && formik.errors.coach
+        && <div>{formik.errors.coach}</div>
+      }
       <OptionList
         options={couponOptions.couponTypes}
-        handleChange={(e) => {
-          handleChange(selectedCouponOptions, "couponType", e.target.value)
-        }}
+        name="couponType"
+        handleChange={handleChange}
       />
+      {
+        formik.touched.couponType
+        && formik.errors.couponType
+        && <div>{formik.errors.couponType}</div>
+      }
       <Ccs.InputTheNumberOfCoupon
         type='text'
         placeholder="쿠폰 수량"
         name="coupons"
-        onChange={(e) => {
-          handleChange(selectedCouponOptions, "coupons", e.target.value)
-        }}
+        onChange={handleChange}
       />
-      <Ccs.CouponCreationPageButton type='button' onClick={() => {
-        handleCreateCouponNumber(selectedCouponOptions)
-      }}>
+      {
+        formik.touched.coupons
+        && formik.errors.coupons
+        && <div>{formik.errors.coupons}</div>
+      }
+      <Ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
         Generate coupon number
       </Ccs.CouponCreationPageButton>
     </Ccs.Box>

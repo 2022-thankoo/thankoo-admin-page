@@ -1,10 +1,10 @@
 import {makeOption} from "./dataGenerator";
 
-const coachBlankOption = "코치를 선택해 주세요";
-const couponBlankOption = "쿠폰 종류를 선택해 주세요";
+const coachBlankOption = makeOption("", "코치를 선택해 주세요");
+const couponBlankOption = makeOption("", "쿠폰 종류를 선택해 주세요");
 
 export const coaches = [
-  makeOption("", coachBlankOption),
+  coachBlankOption,
   makeOption("tomi", "토미"),
   makeOption("pobi", "포비"),
   makeOption("jason", "제이슨"),
@@ -17,8 +17,14 @@ export const coaches = [
   makeOption("jun", "준"),
 ];
 
+export const getCoaches = () => coaches.map(coach => coach.actualValue)
+  .filter(coach => coach !== coachBlankOption.actualValue);
+
 export const couponTypes = [
-  makeOption("", couponBlankOption),
+  couponBlankOption,
   makeOption("coffee", "커피"),
   makeOption("meal", "식사"),
 ];
+
+export const getCouponTypes = () => couponTypes.map(couponType => couponType.actualValue)
+  .filter(couponType => couponType !== couponBlankOption.actualValue);
