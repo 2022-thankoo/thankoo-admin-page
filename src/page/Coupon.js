@@ -1,12 +1,12 @@
 import Header from "../component/header/Header";
-import SearchOption from "../data/searchOption";
 import DataList from "../component/dataList/DataList";
 import PageWrapper from "../component/commonStyle/PageWrapper";
+import {Status} from "../data/searchOption";
 
 function CouponPage() {
   return (
     <PageWrapper>
-      <Header searchOption={SearchOption.coupon}/>
+      <Header searchOption={Status.coupon}/>
       <DataList/>
     </PageWrapper>
   )

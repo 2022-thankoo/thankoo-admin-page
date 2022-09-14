@@ -1,4 +1,4 @@
-import {createCategoryElement} from "./dateGenerator";
+import {createCategoryElement} from "./dataGenerator";
 import {ClientPath} from "./path";
 
 const category = [

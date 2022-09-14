@@ -2,7 +2,7 @@ import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
 import * as Ccs from "./CouponCreationStyle";
 import {useState} from "react";
-import {generateRandomString} from "../../data/dateGenerator";
+import {generateRandomString} from "../../data/dataGenerator";
 
 function CouponCreation() {
 

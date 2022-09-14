@@ -1,46 +1,95 @@
 import PropTypes from 'prop-types';
 import {FaSearch} from "react-icons/fa";
+import * as yup from 'yup';
 
 import * as Hs from './HeaderStyle';
 import OptionList from "../optionList/OptionList";
 import {useState} from "react";
+import {useFormik} from "formik";
+import {regExp} from "../../data/format";
+import {warningMessage} from "../../data/message";
+import {getFormattedDate, date} from "../../data/dataGenerator";
+import {blankOption} from "../../data/searchOption";
 
 function Header({searchOption}) {
 
-  const [searchOptions, setSearchOptions] = useState({
-    startDate: '',
-    endDate: '',
-    status: '',
+  const [searchOptionActualValue] = useState(searchOption.statuses
+    .map(status => status.actualValue));
+
+  const [defaultDate] = useState({
+    start: `${getFormattedDate("-", date.getFullYear(), "01", "01")}`,
+    end: `${getFormattedDate("-", date.getFullYear(), "12", "31")}`,
   });
 
-  const handleChange = (name, value) => {
-    setSearchOptions({...searchOptions, [name]: value})
+  const formik = useFormik({
+    initialValues: {
+      startDate: `${defaultDate.start}`,
+      endDate: `${defaultDate.end}`,
+      status: `${blankOption.actualValue}`,
+    },
+    validationSchema: yup.object({
+      startDate: yup.string()
+        .matches(regExp.date, warningMessage.invalidDateFormat),
+      endDate: yup.string()
+        .matches(regExp.date, warningMessage.invalidDateFormat),
+      status: yup.string()
+        .oneOf([...searchOptionActualValue], warningMessage.invalidSearchOptionStatus),
+    }),
+    onSubmit: ({startDate, endDate, status}) => {
+      console.log("submit: ", startDate, endDate, status);
+    }
+  });
+
+  const handleChange = (event) => {
+    formik.handleChange(event);
   };
 
-  const handleSearch = () => {
-    console.log(searchOptions);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    formik.handleSubmit();
   }
 
   return (
     <Hs.Header>
       <Hs.HeaderWrapper>
         <Hs.DateBox>
-          <Hs.DateSelection onChange={(e) => {
-            handleChange("startDate", e.target.value)
-          }}/>
+          <Hs.DateSelection
+            name="startDate"
+            defaultValue={defaultDate.start}
+            onChange={handleChange}
+          />
+          {formik.touched.startDate
+            && formik.errors.startDate
+            && <div>{formik.errors.startDate}</div>
+          }
           ~
-          <Hs.DateSelection onChange={(e) => {
-            handleChange("endDate", e.target.value)
-          }}/>
+          <Hs.DateSelection
+            name="endDate"
+            defaultValue={defaultDate.end}
+            onChange={handleChange}
+          />
+          {formik.touched.endDate
+            && formik.errors.endDate
+            && <div>{formik.errors.endDate}</div>
+          }
         </Hs.DateBox>
         {searchOption.hasStatus
-          && <OptionList
-            options={searchOption.statuses}
-            handleChange={(e) => {
-              handleChange("status", e)
-            }}
-          />}
-        <Hs.SearchButton onClick={handleSearch}><FaSearch/></Hs.SearchButton>
+          &&
+          <>
+            <OptionList
+              name={"status"}
+              options={searchOption.statuses}
+              handleChange={handleChange}
+            />
+            {formik.touched.status
+              && formik.errors.status
+              && <div>{formik.errors.status}</div>
+            }
+          </>
+          }
+        <Hs.SearchButton onClick={handleSearch}>
+          <FaSearch/>
+        </Hs.SearchButton>
       </Hs.HeaderWrapper>
     </Hs.Header>
   )

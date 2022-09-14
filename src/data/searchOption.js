@@ -1,11 +1,11 @@
-import {makeOption, makeStatus} from "./dateGenerator";
+import {makeOption, makeStatus} from "./dataGenerator";
 
-const blankStatus = "상태 선택";
+export const blankOption = makeOption("all", "상태 선택");
 
-const Status = {
-  member: makeStatus(false, [makeOption("", blankStatus)]),
+export const Status = {
+  member: makeStatus(false, [blankOption]),
   coupon: makeStatus(true, [
-    makeOption("", blankStatus),
+    blankOption,
     makeOption("not used", "not used"),
     makeOption("reserving", "reserving"),
     makeOption("reserved", "reserved"),
@@ -13,17 +13,15 @@ const Status = {
     makeOption("expired", "expired")
   ]),
   meeting: makeStatus(true, [
-    makeOption("", blankStatus),
+    blankOption,
     makeOption("on progress", "on progress"),
     makeOption("finished", "finished")
   ]),
   reservation: makeStatus(true, [
-    makeOption("", blankStatus),
+    blankOption,
     makeOption("waiting", "waiting"),
     makeOption("deny", "deny"),
     makeOption("accept", "accept"),
     makeOption("canceled", "canceled")
   ])
-}
-
-export default Status;
+};

@@ -1,8 +1,8 @@
 import Header from "../component/header/Header";
-import SearchOption from "../data/searchOption";
+import {Status} from "../data/searchOption";
 
 function ReservationPage() {
-  return <Header searchOption={SearchOption.reservation}/>
+  return <Header searchOption={Status.reservation}/>
 }
 
 export default ReservationPage;

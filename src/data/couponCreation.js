@@ -1,4 +1,4 @@
-import {makeOption} from "./dateGenerator";
+import {makeOption} from "./dataGenerator";
 
 const coachBlankOption = "코치를 선택해 주세요";
 const couponBlankOption = "쿠폰 종류를 선택해 주세요";

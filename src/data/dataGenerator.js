@@ -20,3 +20,9 @@ export const generateRandomString = (arrayLength, stringLength) => {
   }
   return [...randomStrings];
 }
+
+export const date = new Date();
+export const getFormattedDate = (delimiter, ...date) => {
+  console.log(date.join(delimiter));
+  return date.join(delimiter);
+}
