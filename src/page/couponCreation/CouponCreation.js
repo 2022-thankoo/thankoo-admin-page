@@ -10,6 +10,7 @@ import {warningMessage} from "../../data/message";
 import {coaches, couponTypes, getCoaches, getCouponTypes} from "../../data/couponCreation";
 import {regExp} from "../../data/format";
 import * as Text from '../../component/commonStyle/TextBox';
+import {api} from "../../util/axiosIntance";
 
 const generateTitle = (coach, couponType, defaultTitle) => coach && couponType
   ? `${coach}(이)가 보내는 ${couponType} 쿠폰`
@@ -43,7 +44,7 @@ function CouponCreation() {
       [requiredOptions.couponType]: '',
       [requiredOptions.coupons]: 0,
       [requiredOptions.couponTitle]: '',
-      [requiredOptions.couponMessage]: '',
+      [requiredOptions.couponMessage]: '수고하셨습니다!',
     },
     validationSchema: yup.object({
       [requiredOptions.coachId]: yup.string()
@@ -67,11 +68,16 @@ function CouponCreation() {
         options[requiredOptions.couponTitle] = generateTitle(selectedCouponOptions[requiredOptions.coachId],
           selectedCouponOptions[requiredOptions.couponType], '');
       }
-      console.log(options);
-      // console.log(coach);
-      // api({
-      //
-      // })
+      // console.log({...options})
+      api({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/serial`,
+        data: {
+          ...options
+        }
+      })
+        .then(() => alert('쿠폰이 생성되었습니다.'))
+        .catch(err => console.log(err));
     }
   });
 
@@ -162,7 +168,7 @@ function CouponCreation() {
       <Ccs.OptionBox>
         <Ccs.OptionLabel htmlFor={requiredOptions.couponMessage}>쿠폰 메시지를 입력해 주세요</Ccs.OptionLabel>
         <Ccs.InputCouponMessage
-          placeholder="쿠폰 메시지"
+          placeholder="수고하셨습니다!"
           name={requiredOptions.couponMessage}
           onChange={handleChange}
         />

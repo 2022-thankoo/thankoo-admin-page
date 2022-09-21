@@ -19,6 +19,7 @@ export const coaches = [
   makeOption("-4", "포코"),
   makeOption("105", "공원"),
   makeOption("-5", "준"),
+  makeOption("7", "테스트")
 ];
 
 export const getCoaches = () => coaches.map(coach => coach.actualValue)
@@ -26,8 +27,8 @@ export const getCoaches = () => coaches.map(coach => coach.actualValue)
 
 export const couponTypes = [
   couponBlankOption,
-  makeOption("coffee", "커피"),
-  makeOption("meal", "식사"),
+  makeOption("COFFEE", "커피"),
+  makeOption("MEAL", "식사"),
 ];
 
 export const getCouponTypes = () => couponTypes.map(couponType => couponType.actualValue)
