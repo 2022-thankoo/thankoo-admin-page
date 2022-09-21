@@ -11,6 +11,7 @@ import Member from "./page/Member";
 import Meeting from "./page/Meeting";
 import Reservation from "./page/Reservation";
 import './App.css';
+import AdminAccount from "./page/adminAccount/AdminAccount";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path={ClientPath.meeting} element={<Meeting/>}/>
             <Route path={ClientPath.reservation} element={<Reservation/>}/>
             <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
+            <Route path={ClientPath.adminAccount} element={<AdminAccount/>}/>
           </Routes>
         </Router>
       </RecoilRoot>
