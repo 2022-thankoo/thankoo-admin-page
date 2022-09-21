@@ -26,3 +26,8 @@ export const getFormattedDate = (delimiter, ...date) => {
   console.log(date.join(delimiter));
   return date.join(delimiter);
 }
+
+export const getDataFromObjectArray = (objectArray, target, filterOption) => {
+  return objectArray.filter(object => object[target.key] === target.value)
+    .map(object => object[filterOption])[0];
+}

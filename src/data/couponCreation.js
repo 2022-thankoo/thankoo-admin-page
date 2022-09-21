@@ -1,20 +1,24 @@
 import {makeOption} from "./dataGenerator";
 
+const makeCoachOption = (id, actualValue, showedValue) => {
+  return {id, ...makeOption(actualValue, showedValue)};
+}
+
 const coachBlankOption = makeOption("", "코치를 선택해 주세요");
 const couponBlankOption = makeOption("", "쿠폰 종류를 선택해 주세요");
 
 export const coaches = [
   coachBlankOption,
-  makeOption("tomi", "토미"),
-  makeOption("pobi", "포비"),
-  makeOption("jason", "제이슨"),
-  makeOption("brown", "브라운"),
-  makeOption("gugu", "구구"),
-  makeOption("bri", "브리"),
-  makeOption("neo", "네오"),
-  makeOption("poco", "포코"),
-  makeOption("gongwon", "공원"),
-  makeOption("jun", "준"),
+  makeOption("-1", "토미"),
+  makeOption("-2", "포비"),
+  makeOption("-3", "제이슨"),
+  makeOption("103", "브라운"),
+  makeOption("49", "구구"),
+  makeOption("82", "브리"),
+  makeOption("45", "네오"),
+  makeOption("-4", "포코"),
+  makeOption("105", "공원"),
+  makeOption("-5", "준"),
 ];
 
 export const getCoaches = () => coaches.map(coach => coach.actualValue)
