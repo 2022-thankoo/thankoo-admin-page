@@ -11,7 +11,7 @@ import {warningMessage} from "../../data/message";
 import {getFormattedDate, date} from "../../data/dataGenerator";
 import {blankOption} from "../../data/searchOption";
 
-function Header({searchOption}) {
+function Header({handleSubmit, searchOption}) {
 
   const [searchOptionActualValue] = useState(searchOption.statuses
     .map(status => status.actualValue));
@@ -36,6 +36,8 @@ function Header({searchOption}) {
         .oneOf([...searchOptionActualValue], warningMessage.invalidSearchOptionStatus),
     }),
     onSubmit: ({startDate, endDate, status}) => {
+      // setSelectedOption({startDate, endDate, status});
+      handleSubmit(startDate, endDate, status);
       console.log("submit: ", startDate, endDate, status);
     }
   });
@@ -53,24 +55,29 @@ function Header({searchOption}) {
     <Hs.Header>
       <Hs.HeaderWrapper>
         <Hs.DateBox>
-          <Hs.DateSelection
-            name="startDate"
-            defaultValue={defaultDate.start}
-            onChange={handleChange}
-          />
-          {formik.touched.startDate
-            && formik.errors.startDate
-            && <div>{formik.errors.startDate}</div>
-          }
-          ~
-          <Hs.DateSelection
-            name="endDate"
-            defaultValue={defaultDate.end}
-            onChange={handleChange}
-          />
-          {formik.touched.endDate
-            && formik.errors.endDate
-            && <div>{formik.errors.endDate}</div>
+          {searchOption.hasDateOption
+          &&
+            <>
+              <Hs.DateSelection
+                name="startDate"
+                defaultValue={defaultDate.start}
+                onChange={handleChange}
+              />
+              {formik.touched.startDate
+                && formik.errors.startDate
+                && <div>{formik.errors.startDate}</div>
+              }
+              ~
+              <Hs.DateSelection
+                name="endDate"
+                defaultValue={defaultDate.end}
+                onChange={handleChange}
+              />
+              {formik.touched.endDate
+                && formik.errors.endDate
+                && <div>{formik.errors.endDate}</div>
+              }
+            </>
           }
         </Hs.DateBox>
         {searchOption.hasStatus
@@ -96,8 +103,15 @@ function Header({searchOption}) {
 }
 
 Header.propTypes = {
-  hasStatus: PropTypes.bool,
-  statuses: PropTypes.arrayOf(PropTypes.string),
+  handleSubmit: PropTypes.func.isRequired,
+  searchOption: PropTypes.shape({
+    hasDateOption: PropTypes.bool,
+    hasStatus: PropTypes.bool,
+    statuses: PropTypes.arrayOf(PropTypes.shape({
+      actualValue: PropTypes.string,
+      showedValue: PropTypes.string,
+    })),
+  }).isRequired,
 }
 
 export default Header;

@@ -9,7 +9,7 @@ const couponBlankOption = makeOption("", "쿠폰 종류를 선택해 주세요")
 
 export const coaches = [
   coachBlankOption,
-  makeOption("-1", "토미"),
+  makeOption("107", "토미"),
   makeOption("-2", "포비"),
   makeOption("-3", "제이슨"),
   makeOption("103", "브라운"),
@@ -18,8 +18,8 @@ export const coaches = [
   makeOption("45", "네오"),
   makeOption("-4", "포코"),
   makeOption("105", "공원"),
-  makeOption("-5", "준"),
-  makeOption("7", "테스트")
+  makeOption("106", "준"),
+  makeOption("108", "워니"),
 ];
 
 export const getCoaches = () => coaches.map(coach => coach.actualValue)

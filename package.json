@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
+    "copy-image-clipboard": "^2.1.2",
     "deep-equal": "^2.0.5",
     "formik": "^2.2.9",
     "prop-types": "^15.8.1",

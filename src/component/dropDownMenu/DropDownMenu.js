@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import * as Dwms from "./DropDownMenuStyle";
 
-function DropDownMenu({menuList, selectedData}) {
+function DropDownMenu({menuList, handleSelectData}) {
 
   const [showDropDown, setShowDropDown] = useState(false);
 
@@ -19,14 +19,15 @@ function DropDownMenu({menuList, selectedData}) {
         : <>
           <IoIosArrowDown onClick={handleShowDropDown}/>
           <Dwms.DropDownWrapper>
-            {menuList.map(({value, handleClick}) =>
+            {menuList.map(menu =>
               <button
-                key={value}
+                key={menu}
                 type='button'
                 onClick={() => {
-                  handleClick(selectedData)
+                  console.log('clicked')
+                  handleSelectData();
                 }}
-              >{value}</button>
+              >{menu}</button>
             )}
           </Dwms.DropDownWrapper>
         </>
@@ -36,11 +37,8 @@ function DropDownMenu({menuList, selectedData}) {
 }
 
 DropDownMenu.propTypes = {
-  menuList: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string,
-    handleClick: PropTypes.func
-  })),
-  selectedData: PropTypes.arrayOf(PropTypes.number)
+  menuList: PropTypes.arrayOf(PropTypes.string),
+  handleSelectData: PropTypes.func,
 }
 
 export default DropDownMenu;

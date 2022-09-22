@@ -1,8 +1,8 @@
 import Header from "../component/header/Header";
-import {Status} from "../data/searchOption";
+import {searchOptions} from "../data/searchOption";
 
 function MeetingPage() {
-  return <Header searchOption={Status.meeting}/>
+  return <Header searchOption={searchOptions.meeting}/>
 }
 
 export default MeetingPage;

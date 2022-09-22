@@ -2,8 +2,8 @@ export const createCategoryElement = (url, element) => {
   return {url, element};
 }
 
-export const makeStatus = (hasStatus, statuses) => {
-  return {hasStatus, statuses};
+export const makeSearchOption = (hasDateOption, hasStatus, statuses = makeOption("", "")) => {
+  return {hasDateOption, hasStatus, statuses};
 }
 
 export const makeOption = (actualValue, showedValue) => {

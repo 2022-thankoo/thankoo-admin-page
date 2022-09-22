@@ -12,6 +12,8 @@ import Meeting from "./page/Meeting";
 import Reservation from "./page/Reservation";
 import './App.css';
 import AdminAccount from "./page/adminAccount/AdminAccount";
+import CouponSerial from "./page/CouponSerial";
+import QrList from "./page/QrList";
 
 function App() {
   return (
@@ -24,9 +26,11 @@ function App() {
             <Route path={ClientPath.member} element={<Member/>}/>
             <Route path={ClientPath.coupon} element={<Coupon/>}/>
             <Route path={ClientPath.meeting} element={<Meeting/>}/>
+            <Route path={ClientPath.couponSerial} element={<CouponSerial/>}/>
             <Route path={ClientPath.reservation} element={<Reservation/>}/>
             <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
             <Route path={ClientPath.adminAccount} element={<AdminAccount/>}/>
+            <Route path={ClientPath.qrCode} element={<QrList/>}/>
           </Routes>
         </Router>
       </RecoilRoot>
