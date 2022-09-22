@@ -15,11 +15,11 @@ export const coaches = [
   makeOption("103", "브라운"),
   makeOption("49", "구구"),
   makeOption("82", "브리"),
-  makeOption("45", "네오"),
-  makeOption("-4", "포코"),
+  makeOption("95", "네오"),
   makeOption("105", "공원"),
   makeOption("106", "준"),
   makeOption("108", "워니"),
+  makeOption("109", "포코")
 ];
 
 export const getCoaches = () => coaches.map(coach => coach.actualValue)

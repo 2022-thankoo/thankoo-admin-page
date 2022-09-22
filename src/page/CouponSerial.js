@@ -8,19 +8,15 @@ import Header from "../component/header/Header";
 import {searchOptions} from "../data/searchOption";
 import {api} from "../util/axiosIntance";
 import selectedDataId from "../globalState/selectedDataId";
-import QrCodeModal from "../component/modal/QrCodeModal/QrCodeModal";
-import modalOnOff from "../globalState/modalOnOff";
 import {ClientPath} from "../data/path";
 
 function CouponSerial() {
   const navigate = useNavigate();
   const selectedCouponSerialId = useRecoilValue(selectedDataId);
-  const [openModal, setOpenModal] = useRecoilState(modalOnOff);
-  const [couponSerial, setCouponSerial] = useState();
+  const [couponSerial, setCouponSerial] = useState([]);
   const [tableHeaders, setTableHeaders] = useState([]);
   const [idList, setIdList] = useState([]);
   const [dropDownList] = useState(["Create QR Code"]);
-  const [qrCode, setQrCode] = useState([]);
 
   const handleSubmit = (startDate, endDate, status) => {
     api({
@@ -37,9 +33,10 @@ function CouponSerial() {
   }
 
   function handleCreateQrCode() {
-    const serials = selectedCouponSerialId.map(id => String(id));
+    console.log(couponSerial);
+    const serials = couponSerial.filter(coupon => selectedCouponSerialId.includes(coupon.id))
+      .map(coupon => coupon.code);
     console.log(serials);
-    console.log(`${process.env.REACT_APP_SERVER_ORIGIN}/admin/qrcode`);
     api({
       method: 'POST',
       url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/qrcode`,
@@ -48,9 +45,6 @@ function CouponSerial() {
       .then(res => {
         const {data: qrCodes} = res;
         navigate(ClientPath.qrCode, {state: {qrCodes}});
-        // history.push()
-        // setQrCode(data);
-        // setOpenModal(!openModal);
       })
       .catch(err => console.log(err))
   }
@@ -68,7 +62,6 @@ function CouponSerial() {
         tableRows={couponSerial}
         handleSelectData={handleCreateQrCode}
       />
-      {openModal && <QrCodeModal qrUrls={qrCode}/>}
     </PageWrapper>
   )
 }
