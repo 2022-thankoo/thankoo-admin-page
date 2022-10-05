@@ -11,7 +11,6 @@ function QrList() {
   const [clickedQr, setClickedQr] = useState(qrCodes
     .map(({link}) => ({link, clicked: false})))
 
-  console.log(clickedQr);
   const handleCLickToCopy = async (link) => {
     setClickedQr(clickedQr.map(qr => {
       if (qr.link !== link) {

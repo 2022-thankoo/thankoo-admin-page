@@ -1,20 +1,16 @@
+import {useState} from "react";
 import {useFormik} from "formik";
 import * as yup from 'yup';
 
 import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
 import * as Ccs from "./CouponCreationStyle";
-import {useState} from "react";
-import {getDataFromObjectArray} from "../../data/dataGenerator";
+import {generateTitle, getDataFromObjectArray} from "../../data/dataGenerator";
 import {warningMessage} from "../../data/message";
 import {coaches, couponTypes, getCoaches, getCouponTypes} from "../../data/couponCreation";
 import {regExp} from "../../data/format";
 import * as Text from '../../component/commonStyle/TextBox';
 import {api} from "../../util/axiosIntance";
-
-const generateTitle = (coach, couponType, defaultTitle) => coach && couponType
-  ? `${coach}(이)가 보내는 ${couponType} 쿠폰`
-  : defaultTitle;
 
 function CouponCreation() {
 
