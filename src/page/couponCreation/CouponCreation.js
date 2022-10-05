@@ -5,52 +5,95 @@ import OptionList from "../../component/optionList/OptionList";
 import * as couponOptions from "../../data/couponCreation";
 import * as Ccs from "./CouponCreationStyle";
 import {useState} from "react";
-import {generateRandomString} from "../../data/dataGenerator";
+import {getDataFromObjectArray} from "../../data/dataGenerator";
 import {warningMessage} from "../../data/message";
-import {getCoaches, getCouponTypes} from "../../data/couponCreation";
+import {coaches, couponTypes, getCoaches, getCouponTypes} from "../../data/couponCreation";
+import {regExp} from "../../data/format";
+import * as Text from '../../component/commonStyle/TextBox';
+import {api} from "../../util/axiosIntance";
+
+const generateTitle = (coach, couponType, defaultTitle) => coach && couponType
+  ? `${coach}(이)가 보내는 ${couponType} 쿠폰`
+  : defaultTitle;
 
 function CouponCreation() {
 
-  const [selectedCouponOptions, setSelectedCouponOptions] = useState({
-    coach: '',
-    couponType: '',
-    couponNumbers: []
+  const [requiredOptions] = useState({
+    coachId: 'memberId',
+    couponType: 'couponType',
+    coupons: 'quantity',
+    couponTitle: 'title',
+    couponMessage: 'message'
   });
 
+  const [selectedCouponOptions, setSelectedCouponOptions] = useState({
+    [requiredOptions.coachId]: '',
+    [requiredOptions.couponType]: '',
+  });
+
+  const [messageLength, setMessageLength] = useState(0);
+
   const [actualCouponValue] = useState({
-    coachName: getCoaches(),
-    couponType: getCouponTypes(),
+    [requiredOptions.coachId]: getCoaches(),
+    [requiredOptions.couponType]: getCouponTypes(),
   });
 
   const formik = useFormik({
     initialValues: {
-      coach: '',
-      couponType: '',
-      coupons: 0,
+      [requiredOptions.coachId]: '',
+      [requiredOptions.couponType]: '',
+      [requiredOptions.coupons]: 0,
+      [requiredOptions.couponTitle]: '',
+      [requiredOptions.couponMessage]: '수고하셨습니다!',
     },
     validationSchema: yup.object({
-      coach: yup.string()
+      [requiredOptions.coachId]: yup.string()
         .required(warningMessage.invalidCoach)
-        .oneOf([...actualCouponValue.coachName], warningMessage.invalidCoach),
-      couponType: yup.string()
+        .matches(regExp.memberId, warningMessage.cannotCreateCoupon)
+        .oneOf([...actualCouponValue[requiredOptions.coachId]], warningMessage.invalidCoach),
+      [requiredOptions.couponType]: yup.string()
         .required(warningMessage.invalidCouponType)
-        .oneOf([...actualCouponValue.couponType], warningMessage.invalidCouponType),
-      coupons: yup.number()
+        .oneOf([...actualCouponValue[requiredOptions.couponType]], warningMessage.invalidCouponType),
+      [requiredOptions.coupons]: yup.number()
         .integer(warningMessage.couponNumberIsNotInteger)
         .min(1, warningMessage.invalidCouponNumberMinRange)
-        .max(10, warningMessage.invalidCouponNumberMaxRange)
+        .max(10, warningMessage.invalidCouponNumberMaxRange),
+      [requiredOptions.couponTitle]: yup.string()
+        .max(20, warningMessage.invalidCouponTitleLength),
+      [requiredOptions.couponMessage]: yup.string()
+        .max(100, warningMessage.invalidCouponMessageLength),
     }),
-    onSubmit: ({coach, couponType, coupons}) => {
-      console.log(`submit ${coach} ${couponType}`);
-      setSelectedCouponOptions({
-        coach,
-        couponType,
-        couponNumbers: generateRandomString(coupons, 8)
-      });
+    onSubmit: (options) => {
+      if (options[requiredOptions.couponTitle] === '') {
+        options[requiredOptions.couponTitle] = generateTitle(selectedCouponOptions[requiredOptions.coachId],
+          selectedCouponOptions[requiredOptions.couponType], '');
+      }
+      // console.log({...options})
+      api({
+        method: 'POST',
+        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/serial`,
+        data: {
+          ...options
+        }
+      })
+        .then(() => alert('쿠폰이 생성되었습니다.'))
+        .catch(err => console.log(err));
     }
   });
 
   const handleChange = (event) => {
+    const {target: {name, value}} = event;
+    if (name === requiredOptions.couponMessage) {
+      setMessageLength(value.length);
+    }
+
+    const optionObject = requiredOptions.coachId === name ? coaches : couponTypes;
+    const selectedOption = getDataFromObjectArray(optionObject,
+      {key: "actualValue", value},
+      "showedValue");
+
+    console.log(name, value);
+    setSelectedCouponOptions({...selectedCouponOptions, [name]: selectedOption})
     formik.handleChange(event);
   };
 
@@ -59,54 +102,88 @@ function CouponCreation() {
     formik.handleSubmit();
   };
 
-  const handleSubmitCouponNumber = () => {
-    console.log(selectedCouponOptions);
-  }
-
   return (<Ccs.CouponCreationPageWrapper>
     <Ccs.Box>
-      <OptionList
-        options={couponOptions.coaches}
-        name="coach"
-        handleChange={handleChange}
-      />
-      {formik.touched.coach
-        && formik.errors.coach
-        && <div>{formik.errors.coach}</div>
-      }
-      <OptionList
-        options={couponOptions.couponTypes}
-        name="couponType"
-        handleChange={handleChange}
-      />
-      {
-        formik.touched.couponType
-        && formik.errors.couponType
-        && <div>{formik.errors.couponType}</div>
-      }
-      <Ccs.InputTheNumberOfCoupon
-        type='text'
-        placeholder="쿠폰 수량"
-        name="coupons"
-        onChange={handleChange}
-      />
-      {
-        formik.touched.coupons
-        && formik.errors.coupons
-        && <div>{formik.errors.coupons}</div>
-      }
+      <Ccs.OptionBox>
+        <Ccs.OptionLabel htmlFor={requiredOptions.coachId}> 코치를 선택해 주세요</Ccs.OptionLabel>
+        <OptionList
+          options={couponOptions.coaches}
+          name={requiredOptions.coachId}
+          handleChange={handleChange}
+        />
+        {formik.touched[requiredOptions.coachId]
+          && formik.errors[requiredOptions.coachId]
+          && <Text.warning>{formik.errors[requiredOptions.coachId]}</Text.warning>
+        }
+      </Ccs.OptionBox>
+
+      <Ccs.OptionBox>
+        <Ccs.OptionLabel htmlFor={requiredOptions.couponType}>쿠폰을 선택해 주세요</Ccs.OptionLabel>
+        <OptionList
+          options={couponOptions.couponTypes}
+          name={requiredOptions.couponType}
+          handleChange={handleChange}
+        />
+        {
+          formik.touched[requiredOptions.couponType]
+          && formik.errors[requiredOptions.couponType]
+          && <Text.warning>{formik.errors[requiredOptions.couponType]}</Text.warning>
+        }
+      </Ccs.OptionBox>
+
+      <Ccs.OptionBox>
+        <Ccs.OptionLabel htmlFor={requiredOptions.coupons}>쿠폰 수량을 입력해 주세요</Ccs.OptionLabel>
+        <Ccs.InputCouponOptions
+          type='text'
+          placeholder="쿠폰 수량"
+          name={requiredOptions.coupons}
+          onChange={handleChange}
+        />
+        {
+          formik.touched[requiredOptions.coupons]
+          && formik.errors[requiredOptions.coupons]
+          && <Text.warning>{formik.errors[requiredOptions.coupons]}</Text.warning>
+        }
+      </Ccs.OptionBox>
+
+      <Ccs.OptionBox>
+        <Ccs.OptionLabel htmlFor={requiredOptions.couponTitle}>쿠폰 제목을 입력해 주세요</Ccs.OptionLabel>
+        <Ccs.InputCouponOptions
+          type='text'
+          placeholder={
+            generateTitle(selectedCouponOptions[requiredOptions.coachId],
+              selectedCouponOptions[requiredOptions.couponType],
+              '쿠폰 제목을 입력해 주세요')
+          }
+          name={requiredOptions.couponTitle}
+          onChange={handleChange}
+        />
+        {
+          formik.touched[requiredOptions.couponTitle]
+          && formik.errors[requiredOptions.couponTitle]
+          && <Text.warning>{formik.errors[requiredOptions.couponTitle]}</Text.warning>
+        }
+      </Ccs.OptionBox>
+
+      <Ccs.OptionBox>
+        <Ccs.OptionLabel htmlFor={requiredOptions.couponMessage}>쿠폰 메시지를 입력해 주세요</Ccs.OptionLabel>
+        <Ccs.InputCouponMessage
+          placeholder="수고하셨습니다!"
+          name={requiredOptions.couponMessage}
+          onChange={handleChange}
+        />
+        <div>{messageLength}/100</div>
+        {
+          formik.touched[requiredOptions.couponMessage]
+          && formik.errors[requiredOptions.couponMessage]
+          && <Text.warning>{formik.errors[requiredOptions.couponMessage]}</Text.warning>
+        }
+      </Ccs.OptionBox>
+
       <Ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
-        Generate coupon number
+        Generate coupon
       </Ccs.CouponCreationPageButton>
     </Ccs.Box>
-    {selectedCouponOptions.couponNumbers.length > 0 && <Ccs.Box>
-      <h1>Result</h1>
-      {selectedCouponOptions.couponNumbers
-        .map(couponNumber => <p key={couponNumber}>{couponNumber}</p>)}
-      <Ccs.CouponCreationPageButton type='button' onClick={handleSubmitCouponNumber}>
-        Create coupon
-      </Ccs.CouponCreationPageButton>
-    </Ccs.Box>}
   </Ccs.CouponCreationPageWrapper>);
 }
 

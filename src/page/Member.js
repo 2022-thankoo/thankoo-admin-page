@@ -1,8 +1,8 @@
 import Header from "../component/header/Header";
-import {Status} from "../data/searchOption";
+import {searchOptions} from "../data/searchOption";
 
 function MemberPage() {
-  return <Header searchOption={Status.member}/>
+  return <Header searchOption={searchOptions.member}/>
 }
 
 export default MemberPage;
