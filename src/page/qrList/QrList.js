@@ -1,22 +1,8 @@
 import {useLocation} from "react-router-dom";
-import styled, {css} from "styled-components";
 import {useState} from "react";
 import {copyImageToClipboard} from "copy-image-clipboard";
 
-const ImageBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const QrImage = styled.img`
-  width: 200px;
-  height: 200px;
-  margin-right: 20px;
-  margin-bottom: 20px;
-  ${props => props.clicked && css`
-    border: 5px solid gray;
-  `}
-`;
+import * as qls from './QrListStyle';
 
 function QrList() {
 
@@ -38,16 +24,16 @@ function QrList() {
   }
 
   return (
-   <ImageBox>
+   <qls.ImageBox>
      {clickedQr && clickedQr.map(({link, clicked}) =>
-       <QrImage
+       <qls.QrImage
          key={link}
          src={link}
          alt="coupon qr code"
          clicked={clicked}
          onClick={() => handleCLickToCopy(link)}
        />)}
-   </ImageBox>
+   </qls.ImageBox>
   );
 }
 

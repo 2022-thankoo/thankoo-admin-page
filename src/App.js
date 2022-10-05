@@ -11,9 +11,9 @@ import Member from "./page/Member";
 import Meeting from "./page/Meeting";
 import Reservation from "./page/Reservation";
 import './App.css';
-import AdminAccount from "./page/adminAccount/AdminAccount";
+import AdminAccount from "./page/AdminAccount";
 import CouponSerial from "./page/CouponSerial";
-import QrList from "./page/QrList";
+import QrList from "./page/qrList/QrList";
 
 function App() {
   return (

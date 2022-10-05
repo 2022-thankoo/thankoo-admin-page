@@ -10,17 +10,6 @@ export const makeOption = (actualValue, showedValue) => {
   return {actualValue, showedValue}
 }
 
-export const generateRandomString = (arrayLength, stringLength) => {
-  const randomStrings = new Set();
-  while (randomStrings.size < arrayLength) {
-    const randomString = Math.random()
-      .toString(36)
-      .substring(2, 2 + stringLength);
-    randomStrings.add(randomString);
-  }
-  return [...randomStrings];
-}
-
 export const date = new Date();
 export const getFormattedDate = (delimiter, ...date) => {
   console.log(date.join(delimiter));

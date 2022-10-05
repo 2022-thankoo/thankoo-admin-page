@@ -1,9 +1,5 @@
 import {makeOption} from "./dataGenerator";
 
-const makeCoachOption = (id, actualValue, showedValue) => {
-  return {id, ...makeOption(actualValue, showedValue)};
-}
-
 const coachBlankOption = makeOption("", "코치를 선택해 주세요");
 const couponBlankOption = makeOption("", "쿠폰 종류를 선택해 주세요");
 

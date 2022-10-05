@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useRecoilState, useRecoilValue} from "recoil";
+import {useRecoilValue} from "recoil";
 import {useNavigate} from 'react-router-dom';
 
 import PageWrapper from "../component/commonStyle/PageWrapper";
@@ -33,10 +33,9 @@ function CouponSerial() {
   }
 
   function handleCreateQrCode() {
-    console.log(couponSerial);
     const serials = couponSerial.filter(coupon => selectedCouponSerialId.includes(coupon.id))
       .map(coupon => coupon.code);
-    console.log(serials);
+
     api({
       method: 'POST',
       url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/qrcode`,

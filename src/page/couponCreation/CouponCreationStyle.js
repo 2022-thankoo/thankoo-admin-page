@@ -29,7 +29,6 @@ export const OptionLabel = styled.label`
 `;
 
 export const InputCouponOptions = styled.input`
->>>>>>> main
   height: 17px;
   width: 192px;
   margin-bottom: 5px;

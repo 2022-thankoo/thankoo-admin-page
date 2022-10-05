@@ -68,7 +68,7 @@ function CouponCreation() {
         options[requiredOptions.couponTitle] = generateTitle(selectedCouponOptions[requiredOptions.coachId],
           selectedCouponOptions[requiredOptions.couponType], '');
       }
-      // console.log({...options})
+
       api({
         method: 'POST',
         url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/serial`,
@@ -92,7 +92,6 @@ function CouponCreation() {
       {key: "actualValue", value},
       "showedValue");
 
-    console.log(name, value);
     setSelectedCouponOptions({...selectedCouponOptions, [name]: selectedOption})
     formik.handleChange(event);
   };
