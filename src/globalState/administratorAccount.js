@@ -1,10 +1,12 @@
 import {atom} from "recoil";
 
+import {getItem} from "../data/sessionStorage";
+
 const administratorAccount = atom({
   key: 'administrator',
   default: {
-    id: localStorage.getItem('administratorId') || '',
-    accessToken: localStorage.getItem('accessToken') || '',
+    id: getItem('administratorId') || '',
+    accessToken: getItem('accessToken') || '',
   }
 });
 

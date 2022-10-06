@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-import {deleteAll} from "../data/localStorage";
+import {deleteAll} from "../data/sessionStorage";
 import {useNavigate} from "react-router-dom";
 import {ClientPath} from "../data/path";
 

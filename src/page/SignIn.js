@@ -4,7 +4,7 @@ import {useFormik} from "formik";
 import {api} from "../util/axiosIntance";
 import {useRecoilState} from "recoil";
 import administratorAccount from "../globalState/administratorAccount";
-import {saveAccessToken, saveAdministratorId} from "../data/localStorage";
+import {saveAccessToken, saveAdministratorId} from "../data/sessionStorage";
 
 function SignIn() {
 
