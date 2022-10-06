@@ -2,7 +2,7 @@ export const createCategoryElement = (url, element) => {
   return {url, element};
 }
 
-export const makeSearchOption = (hasDateOption, hasStatus, statuses = makeOption("", "")) => {
+export const makeSearchOption = (hasDateOption, hasStatus, statuses = [makeOption("all", "")]) => {
   return {hasDateOption, hasStatus, statuses};
 }
 
@@ -12,7 +12,6 @@ export const makeOption = (actualValue, showedValue) => {
 
 export const date = new Date();
 export const getFormattedDate = (delimiter, ...date) => {
-  console.log(date.join(delimiter));
   return date.join(delimiter);
 }
 
@@ -25,3 +24,10 @@ export const generateTitle = (coach, couponType, defaultTitle) => coach && coupo
   ? `${coach}(이)가 보내는 ${couponType} 쿠폰`
   : defaultTitle;
 
+export const generateTableHeaders = (data) => {
+  return data.length ? Object.keys(data[0]) : [];
+}
+
+export const generateDataId = (data) => {
+  return data.map(d => d.id);
+}

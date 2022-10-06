@@ -15,6 +15,7 @@ import AdminAccount from "./page/AdminAccount";
 import CouponSerial from "./page/CouponSerial";
 import QrList from "./page/qrList/QrList";
 import SignIn from "./page/SignIn";
+import SignOut from "./component/SignOut";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
             <Route path={ClientPath.adminAccount} element={<AdminAccount/>}/>
             <Route path={ClientPath.qrCode} element={<QrList/>}/>
+            <Route path={ClientPath.signOut} element={<SignOut/>}/>
           </Routes>
         </Router>
       </RecoilRoot>

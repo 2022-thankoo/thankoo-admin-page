@@ -17,6 +17,7 @@ const category = [
     categoryElement: [
       createCategoryElement(ClientPath.couponCreation, 'Create Coupon'),
       createCategoryElement(ClientPath.adminAccount, 'Admin Account'),
+      createCategoryElement(ClientPath.signOut, 'Sign Out'),
     ]
   }
 ];

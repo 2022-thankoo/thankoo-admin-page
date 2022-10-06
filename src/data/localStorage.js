@@ -5,3 +5,7 @@ export const saveAccessToken = (accessToken) => {
 export const saveAdministratorId = (administratorId) => {
   localStorage.setItem("administratorId", administratorId);
 }
+
+export const deleteAll = () => {
+  localStorage.clear();
+}

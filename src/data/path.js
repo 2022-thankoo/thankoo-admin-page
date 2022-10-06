@@ -7,5 +7,6 @@ export const ClientPath = {
   couponSerial: '/coupon-serial',
   couponCreation: '/coupon-creation',
   adminAccount: '/admin-account',
-  qrCode: '/qrcode'
+  qrCode: '/qrcode',
+  signOut: '/sign-out'
 };
