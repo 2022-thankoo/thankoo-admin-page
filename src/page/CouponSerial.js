@@ -9,6 +9,7 @@ import {api} from "../util/axiosIntance";
 import selectedDataId from "../globalState/selectedDataId";
 import {ClientPath} from "../data/path";
 import {PageWrapper} from "../component/commonStyle/PageWrapper";
+import AuthorizationWrapper from "../component/AuthorizationWrapper";
 
 function CouponSerial() {
   const navigate = useNavigate();
@@ -49,19 +50,21 @@ function CouponSerial() {
   }
 
   return (
-    <PageWrapper>
-      <Header
-        handleSubmit={handleSubmit}
-        searchOption={searchOptions.couponSerial}
-      />
-      <DataList
-        dropDownList={dropDownList}
-        idList={idList}
-        tableHeaders={tableHeaders}
-        tableRows={couponSerial}
-        handleSelectData={handleCreateQrCode}
-      />
-    </PageWrapper>
+    <AuthorizationWrapper>
+      <PageWrapper>
+        <Header
+          handleSubmit={handleSubmit}
+          searchOption={searchOptions.couponSerial}
+        />
+        <DataList
+          dropDownList={dropDownList}
+          idList={idList}
+          tableHeaders={tableHeaders}
+          tableRows={couponSerial}
+          handleSelectData={handleCreateQrCode}
+        />
+      </PageWrapper>
+    </AuthorizationWrapper>
   )
 }
 

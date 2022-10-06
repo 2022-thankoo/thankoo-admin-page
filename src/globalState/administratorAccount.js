@@ -3,8 +3,8 @@ import {atom} from "recoil";
 const administratorAccount = atom({
   key: 'administrator',
   default: {
-    id: '',
-    accessToken: '',
+    id: localStorage.getItem('administratorId') || '',
+    accessToken: localStorage.getItem('accessToken') || '',
   }
 });
 

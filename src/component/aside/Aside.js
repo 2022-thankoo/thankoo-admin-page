@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
 
 import * as As from './AsideStyle';
+import AuthorizationWrapper from "../AuthorizationWrapper";
 
 function AsidePage({category}) {
 
   return (
-    <As.Aside>
-      <As.Title>Thankoo</As.Title>
-      {category.map(({mainCategory, categoryElement}) => {
-        return (
-          <As.CategoryList key={mainCategory}>
-            <As.ListTitle>{mainCategory}</As.ListTitle>
-            {categoryElement.map(({url, element}) =>
-              <As.ListElement key={url}>
-                <As.ElementLink href={url}>{element}</As.ElementLink>
-              </As.ListElement>
-            )}
-          </As.CategoryList>
-        );
-      })}
-    </As.Aside>
+    <AuthorizationWrapper>
+      <As.Aside>
+        <As.Title>Thankoo</As.Title>
+        {category.map(({mainCategory, categoryElement}) => {
+          return (
+            <As.CategoryList key={mainCategory}>
+              <As.ListTitle>{mainCategory}</As.ListTitle>
+              {categoryElement.map(({url, element}) =>
+                <As.ListElement key={url}>
+                  <As.ElementLink href={url}>{element}</As.ElementLink>
+                </As.ListElement>
+              )}
+            </As.CategoryList>
+          );
+        })}
+      </As.Aside>
+    </AuthorizationWrapper>
   );
 }
 
