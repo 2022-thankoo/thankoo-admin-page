@@ -1,4 +1,4 @@
-import PageWrapper from "../component/commonStyle/PageWrapper";
+import {PageWrapper} from "../component/commonStyle/PageWrapper";
 
 function AdminAccount() {
 

@@ -1,4 +1,5 @@
 export const ClientPath = {
+  root: '/',
   member: '/member',
   coupon: '/coupon',
   meeting: '/meeting',

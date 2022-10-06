@@ -1,7 +1,7 @@
 import Header from "../component/header/Header";
 import DataList from "../component/dataList/DataList";
-import PageWrapper from "../component/commonStyle/PageWrapper";
 import {searchOptions} from "../data/searchOption";
+import {PageWrapper} from "../component/commonStyle/PageWrapper";
 
 function CouponPage() {
   return (

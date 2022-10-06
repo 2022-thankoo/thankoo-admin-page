@@ -14,6 +14,7 @@ import './App.css';
 import AdminAccount from "./page/AdminAccount";
 import CouponSerial from "./page/CouponSerial";
 import QrList from "./page/qrList/QrList";
+import SignIn from "./page/SignIn";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <GlobalStyle/>
           <AsidePage category={category}/>
           <Routes>
+            <Route path={ClientPath.root} element={<SignIn />}/>
             <Route path={ClientPath.member} element={<Member/>}/>
             <Route path={ClientPath.coupon} element={<Coupon/>}/>
             <Route path={ClientPath.meeting} element={<Meeting/>}/>

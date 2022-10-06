@@ -11,6 +11,8 @@ import {coaches, couponTypes, getCoaches, getCouponTypes} from "../../data/coupo
 import {regExp} from "../../data/format";
 import * as Text from '../../component/commonStyle/TextBox';
 import {api} from "../../util/axiosIntance";
+import {InputSubmitButton, SubmitButton} from "../../component/commonStyle/InputSubmitButton";
+import {CentralizeComponentWrapper} from "../../component/commonStyle/PageWrapper";
 
 function CouponCreation() {
 
@@ -97,7 +99,7 @@ function CouponCreation() {
     formik.handleSubmit();
   };
 
-  return (<Ccs.CouponCreationPageWrapper>
+  return (<CentralizeComponentWrapper>
     <Ccs.Box>
       <Ccs.OptionBox>
         <Ccs.OptionLabel htmlFor={requiredOptions.coachId}> 코치를 선택해 주세요</Ccs.OptionLabel>
@@ -128,7 +130,7 @@ function CouponCreation() {
 
       <Ccs.OptionBox>
         <Ccs.OptionLabel htmlFor={requiredOptions.coupons}>쿠폰 수량을 입력해 주세요</Ccs.OptionLabel>
-        <Ccs.InputCouponOptions
+        <InputSubmitButton
           type='text'
           placeholder="쿠폰 수량"
           name={requiredOptions.coupons}
@@ -143,7 +145,7 @@ function CouponCreation() {
 
       <Ccs.OptionBox>
         <Ccs.OptionLabel htmlFor={requiredOptions.couponTitle}>쿠폰 제목을 입력해 주세요</Ccs.OptionLabel>
-        <Ccs.InputCouponOptions
+        <InputSubmitButton
           type='text'
           placeholder={
             generateTitle(selectedCouponOptions[requiredOptions.coachId],
@@ -175,11 +177,11 @@ function CouponCreation() {
         }
       </Ccs.OptionBox>
 
-      <Ccs.CouponCreationPageButton type='button' onClick={handleCreateCouponNumber}>
+      <SubmitButton type='button' onClick={handleCreateCouponNumber}>
         Generate coupon
-      </Ccs.CouponCreationPageButton>
+      </SubmitButton>
     </Ccs.Box>
-  </Ccs.CouponCreationPageWrapper>);
+  </CentralizeComponentWrapper>);
 }
 
 export default CouponCreation;

@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-const PageWrapper = styled.div`
+export const PageWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
-export default PageWrapper;
+export const CentralizeComponentWrapper = styled(PageWrapper)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;

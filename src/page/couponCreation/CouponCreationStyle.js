@@ -1,11 +1,4 @@
 import styled from "styled-components";
-import PageWrapper from "../../component/commonStyle/PageWrapper";
-
-export const CouponCreationPageWrapper = styled(PageWrapper)`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-`;
 
 export const Box = styled.div`
   width: 500px;
@@ -28,19 +21,8 @@ export const OptionBox = styled.div`
 export const OptionLabel = styled.label`
 `;
 
-export const InputCouponOptions = styled.input`
-  height: 17px;
-  width: 192px;
-  margin-bottom: 5px;
-`;
-
 export const InputCouponMessage = styled.textarea.attrs({maxLength: 100})`
   width: 192px;
   margin-bottom: 5px;
   height: 100px;
-`;
-
-export const CouponCreationPageButton = styled.button`
-  margin-top: 15px;
-  width: 200px;
 `;

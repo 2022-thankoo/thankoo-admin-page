@@ -2,13 +2,13 @@ import {useState} from "react";
 import {useRecoilValue} from "recoil";
 import {useNavigate} from 'react-router-dom';
 
-import PageWrapper from "../component/commonStyle/PageWrapper";
 import DataList from "../component/dataList/DataList";
 import Header from "../component/header/Header";
 import {searchOptions} from "../data/searchOption";
 import {api} from "../util/axiosIntance";
 import selectedDataId from "../globalState/selectedDataId";
 import {ClientPath} from "../data/path";
+import {PageWrapper} from "../component/commonStyle/PageWrapper";
 
 function CouponSerial() {
   const navigate = useNavigate();
