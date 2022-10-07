@@ -20,6 +20,9 @@ function MemberPage() {
       url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/members?startDate=${startDate}&endDate=${endDate}`
     })
       .then(({data}) => {
+        if (data.length > 50) {
+          data = data.slice(0, 51);
+        }
         setTableHeaders(generateTableHeaders(data));
         setIdList(generateDataId(data));
         setMember(data);
@@ -27,7 +30,16 @@ function MemberPage() {
       .catch(err => console.log(err));
   }
 
-  console.log(member);
+  const handleModifyName = (memberId, data) => {
+      authenticatedRequest({
+        method: 'PUT',
+        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/members/${memberId}`,
+        data: {name: data.name}
+      })
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+    }
+    // console.log(member);
 
   return (
     <AuthorizationWrapper>
@@ -40,6 +52,8 @@ function MemberPage() {
           idList={idList}
           tableHeaders={tableHeaders}
           tableRows={member}
+          modifyTargets={["name"]}
+          handleModify={handleModifyName}
         />
       </PageWrapper>
     </AuthorizationWrapper>

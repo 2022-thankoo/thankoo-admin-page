@@ -9,6 +9,6 @@ export const api = axios.create({
 export const authenticatedRequest = axios.create({
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
   }
 });

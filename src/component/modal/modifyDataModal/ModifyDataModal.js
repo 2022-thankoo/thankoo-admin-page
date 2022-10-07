@@ -6,10 +6,11 @@ import CommonModalBox from "../CommonModal";
 import * as Mdms from './ModifyDataModalStyle';
 import {InputNewData} from "./ModifyDataModalStyle";
 
-function ModifyDataModal({target}) {
+function ModifyDataModal({target, handleModify}) {
 
   const [modifiedData, setModifiedData] = useState(Object.assign(target));
-  const [targetData] = useState(Object.entries(target));
+  const {id, ...otherdatas} = target;
+  const targetData = Object.entries(otherdatas);
 
   const handleModifyData = ({target: {value, name}}) => {
     const newData = value === '' ? target[name] : value;
@@ -24,6 +25,8 @@ function ModifyDataModal({target}) {
       return;
     }
     console.log(modifiedData);
+    const {id, ...data} = modifiedData;
+    handleModify(id, data);
   }
 
   return (
@@ -52,11 +55,12 @@ function ModifyDataModal({target}) {
         </Mdms.ModifyDataModalWrapper>
       </CommonModalBox>
     </>
-  )
+  );
 }
 
 ModifyDataModal.propTypes = {
   target: PropTypes.object,
+  handleModify: PropTypes.func,
 }
 
 export default ModifyDataModal;

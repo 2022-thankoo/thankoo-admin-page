@@ -10,7 +10,7 @@ import {useRecoilState} from "recoil";
 import modalOnOff from "../../globalState/modalOnOff";
 import selectedDataId from "../../globalState/selectedDataId";
 
-function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectData}) {
+function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectData, modifyTargets, handleModify}) {
 
   const [openModifyDataModal, setOpenModifyDataModal] = useRecoilState(modalOnOff);
 
@@ -37,7 +37,14 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
 
   const handleModifyDataButton = (targetId) => {
     setOpenModifyDataModal(!openModifyDataModal);
-    setModifyTarget(tableRows.filter(({id}) => id === targetId)[0]);
+    setModifyTarget(tableRows.filter(({id}) => id === targetId)
+      .map(target => ({
+        id: target.id,
+        ...(modifyTargets
+          .map(modifyTarget => ({[modifyTarget]: target[modifyTarget]}))
+          .reduce((obj, item) => ({...obj, [item.key]: item.value}))
+        ),
+      }))[0]);
   };
 
   return (
@@ -58,6 +65,7 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
             </th>
           </tr>
         </Dls.TableHeader>
+
         <Dls.TableBody>
           {tableRows?.length >= 1 && tableRows.map(({id, ...data}) => {
               return (<Dls.Row key={id}>
@@ -87,7 +95,12 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
           )}
         </Dls.TableBody>
       </Dls.Table>
-      {openModifyDataModal && <ModifyDataModal target={modifyTarget}/>}
+      {openModifyDataModal
+        && <ModifyDataModal
+          target={modifyTarget}
+          handleModify={handleModify}
+        />
+      }
     </>
   );
 }
@@ -98,6 +111,8 @@ DataList.propTypes = {
   tableHeaders: PropTypes.arrayOf(PropTypes.string),
   tableRows: PropTypes.arrayOf(PropTypes.object),
   handleSelectData: PropTypes.func,
+  modifyTargets: PropTypes.arrayOf(PropTypes.string),
+  handleModify: PropTypes.func,
 };
 
 export default DataList;
