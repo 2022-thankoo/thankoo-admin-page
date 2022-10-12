@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import * as Dwms from "./DropDownMenuStyle";
 
 function DropDownMenu({menuList, handleSelectData}) {
-
   const [showDropDown, setShowDropDown] = useState(false);
 
   const handleShowDropDown = () => {
