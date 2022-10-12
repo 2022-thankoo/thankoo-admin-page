@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import DataList from "../component/dataList/DataList";
 import Header from "../component/header/Header";
 import {searchOptions} from "../data/searchOption";
-import {api, authenticatedRequest} from "../util/axiosIntance";
+import {authenticatedRequest} from "../util/axiosIntance";
 import selectedDataId from "../globalState/selectedDataId";
 import {ClientPath} from "../data/path";
 import {PageWrapper} from "../component/commonStyle/PageWrapper";

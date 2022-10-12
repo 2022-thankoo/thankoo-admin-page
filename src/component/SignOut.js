@@ -11,7 +11,7 @@ function SignOut() {
   useEffect(() => {
     deleteAll();
     navigate(ClientPath.root);
-  }, []);
+  }, [navigate]);
 }
 
 export default SignOut;

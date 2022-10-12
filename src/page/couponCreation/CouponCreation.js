@@ -10,7 +10,7 @@ import {warningMessage} from "../../data/message";
 import {coaches, couponTypes, getCoaches, getCouponTypes} from "../../data/couponCreation";
 import {regExp} from "../../data/format";
 import * as Text from '../../component/commonStyle/TextBox';
-import {api, authenticatedRequest} from "../../util/axiosIntance";
+import {authenticatedRequest} from "../../util/axiosIntance";
 import {InputSubmitButton, SubmitButton} from "../../component/commonStyle/InputSubmitButton";
 import {CentralizeComponentWrapper} from "../../component/commonStyle/PageWrapper";
 import AuthorizationWrapper from "../../component/AuthorizationWrapper";
