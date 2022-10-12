@@ -24,7 +24,7 @@ function MemberPage() {
           data = data.slice(0, 51);
         }
         setTableHeaders(generateTableHeaders(data));
-        setIdList(generateDataId(data));
+        setIdList(generateDataId(data, "memberId"));
         setMember(data);
       })
       .catch(err => console.log(err));

@@ -28,7 +28,7 @@ function CouponSerial() {
       .then((response) => {
         const {data} = response;
         setTableHeaders(generateTableHeaders(data));
-        setIdList(generateDataId(data));
+        setIdList(generateDataId(data, "serialId"));
         setCouponSerial(data);
       })
       .catch(err => console.log(err));

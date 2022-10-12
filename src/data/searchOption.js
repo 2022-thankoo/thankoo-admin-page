@@ -7,7 +7,7 @@ export const searchOptions = {
   member: makeSearchOption(true, false),
   coupon: makeSearchOption(true, true, [
     blankOption,
-    makeOption("not used", "not used"),
+    makeOption("not_used", "not used"),
     makeOption("reserving", "reserving"),
     makeOption("reserved", "reserved"),
     makeOption("used", "used"),

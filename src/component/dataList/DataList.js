@@ -9,6 +9,7 @@ import ModifyDataModal from "../modal/modifyDataModal/ModifyDataModal";
 import {useRecoilState} from "recoil";
 import modalOnOff from "../../globalState/modalOnOff";
 import selectedDataId from "../../globalState/selectedDataId";
+import {nanoid} from "nanoid";
 
 function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectData, modifyTargets, handleModify}) {
 
@@ -78,7 +79,7 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
                       checked={selectedIds.includes(id)}
                     />
                   </td>
-                  {Object.values({id, ...data}).map(d => <td key={d}>{d}</td>)}
+                  {Object.values({id, ...data}).map(d => <td key={nanoid()}>{d}</td>)}
                   <td>
                     <button onClick={() => handleDeleteRow(id)}>
                       <RiDeleteBin5Fill/>

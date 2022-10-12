@@ -28,6 +28,12 @@ export const generateTableHeaders = (data) => {
   return data.length ? Object.keys(data[0]) : [];
 }
 
-export const generateDataId = (data) => {
-  return data.map(d => d.id);
+export const generateDataId = (data, idKey) => {
+  return data.map(d => d[idKey]);
+}
+
+export const getCouponResponseParser = (data) => {
+  return data.map(({couponId, createdAt, modifiedAt, receiver: {name: receiverName}, sender: {name: senderName}, status, type}) => ({
+    id: couponId, type, status,  senderName, receiverName, createdAt, modifiedAt
+  }));
 }
