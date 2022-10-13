@@ -16,7 +16,7 @@ export const Title = styled.h1`
 `;
 
 export const CategoryList = styled.ul`
-  margin-right: 100px;
+  margin-right: 20px;
   list-style-type: none;
 `;
 
@@ -31,7 +31,7 @@ export const ListTitle = styled.h2`
 `;
 
 export const ListElement = styled.li`
-  width: 120px;
+  width: 200px;
   margin-left: 40px;
   ${CategoryFontColor}
 `;

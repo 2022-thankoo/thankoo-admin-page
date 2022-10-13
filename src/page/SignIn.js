@@ -1,4 +1,4 @@
-import {InputSubmitButton, SubmitButton} from "../component/commonStyle/InputSubmitButton";
+import {DataInput, SubmitButton} from "../component/commonStyle/DataInput";
 import {SignInBoxWrapper} from "./signIn/SIgnInStyle";
 import {useFormik} from "formik";
 import {api} from "../util/axiosIntance";
@@ -42,14 +42,14 @@ function SignIn() {
   return (
     <SignInBoxWrapper>
       <h2>Sign In</h2>
-      <InputSubmitButton
+      <DataInput
         type="text"
         name="name"
         placeholder="name"
         onChange={handleChange}
       />
 
-      <InputSubmitButton
+      <DataInput
         type="password"
         name="password"
         placeholder="password"

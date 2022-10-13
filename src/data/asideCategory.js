@@ -16,6 +16,7 @@ const category = [
     mainCategory: "Utility",
     categoryElement: [
       createCategoryElement(ClientPath.couponCreation, 'Create Coupon'),
+      createCategoryElement(ClientPath.organizationCreation, 'Create Organization'),
       createCategoryElement(ClientPath.adminAccount, 'Admin Account'),
       createCategoryElement(ClientPath.signOut, 'Sign Out'),
     ]

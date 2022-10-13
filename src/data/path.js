@@ -6,6 +6,7 @@ export const ClientPath = {
   reservation: '/reservation',
   couponSerial: '/coupon-serial',
   couponCreation: '/coupon-creation',
+  organizationCreation: '/organization-creation',
   adminAccount: '/admin-account',
   qrCode: '/qrcode',
   signOut: '/sign-out'

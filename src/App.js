@@ -16,6 +16,7 @@ import CouponSerial from "./page/CouponSerial";
 import QrList from "./page/qrList/QrList";
 import SignIn from "./page/SignIn";
 import SignOut from "./component/SignOut";
+import OrganizationCreation from "./page/OrganizationCreation";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path={ClientPath.couponSerial} element={<CouponSerial/>}/>
             <Route path={ClientPath.reservation} element={<Reservation/>}/>
             <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
+            <Route path={ClientPath.organizationCreation} element={<OrganizationCreation />}/>
             <Route path={ClientPath.adminAccount} element={<AdminAccount/>}/>
             <Route path={ClientPath.qrCode} element={<QrList/>}/>
             <Route path={ClientPath.signOut} element={<SignOut/>}/>
