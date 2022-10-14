@@ -6,6 +6,7 @@ import {CentralizeComponentWrapper} from "../component/commonStyle/PageWrapper";
 import {DataInput, DataInputWrapper, InputBox, SubmitButton} from "../component/commonStyle/DataInput";
 import {warningMessage} from "../data/message";
 import {authenticatedRequest} from "../util/axiosIntance";
+import * as Text from "../component/commonStyle/TextBox";
 
 function OrganizationCreation() {
 
@@ -70,6 +71,11 @@ function OrganizationCreation() {
                 name={requiredOptions[key]}
                 onChange={handleChange}
               />
+              {
+                formik.touched[key]
+                && formik.errors[key]
+                && <Text.warning >{formik.errors[key]}</Text.warning>
+              }
             </InputBox>
           ))}
           <SubmitButton type='submit' onClick={handleCreateOrganization}>
