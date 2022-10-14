@@ -30,8 +30,6 @@ function MemberPage() {
       .catch(err => console.log(err));
   }
 
-  console.log(member);
-
   const handleModifyName = (memberId, data) => {
       authenticatedRequest({
         method: 'PUT',
