@@ -3,7 +3,7 @@ import {searchOptions} from "../data/searchOption";
 import AuthorizationWrapper from "../component/AuthorizationWrapper";
 import {authenticatedRequest} from "../util/axiosIntance";
 import {useState} from "react";
-import {generateDataId, generateTableHeaders} from "../data/dataGenerator";
+import {generateDataId, generateTableHeaders, getDomainResponseParser} from "../data/dataGenerator";
 import DataList from "../component/dataList/DataList";
 import {PageWrapper} from "../component/commonStyle/PageWrapper";
 
@@ -25,10 +25,12 @@ function MemberPage() {
         }
         setTableHeaders(generateTableHeaders(data));
         setIdList(generateDataId(data, "memberId"));
-        setMember(data);
+        setMember(getDomainResponseParser(data, "memberId"));
       })
       .catch(err => console.log(err));
   }
+
+  console.log(member);
 
   const handleModifyName = (memberId, data) => {
       authenticatedRequest({
