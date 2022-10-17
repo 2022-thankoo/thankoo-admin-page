@@ -5,6 +5,7 @@ import {api} from "../util/axiosIntance";
 import {useRecoilState} from "recoil";
 import administratorAccount from "../globalState/administratorAccount";
 import {saveAccessToken, saveAdministratorId} from "../data/sessionStorage";
+import {ApiPath, makeApiUrl} from "../data/path";
 
 function SignIn() {
 
@@ -18,7 +19,7 @@ function SignIn() {
     onSubmit: ({name, password}) => {
       api({
         method: 'POST',
-        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/sign-in`,
+        url: makeApiUrl(ApiPath.administratorSignIn),
         data: {name, password}
       })
         .then(({data: {accessToken, adminId: id}}) => {

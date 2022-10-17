@@ -13,7 +13,7 @@ import * as Text from '../../component/commonStyle/TextBox';
 import {authenticatedRequest} from "../../util/axiosIntance";
 import {DataInput, DataInputWrapper, InputBox, SubmitButton} from "../../component/commonStyle/DataInput";
 import {CentralizeComponentWrapper} from "../../component/commonStyle/PageWrapper";
-import AuthorizationWrapper from "../../component/AuthorizationWrapper";
+import {ApiPath, makeApiUrl} from "../../data/path";
 
 function CouponCreation() {
 
@@ -70,7 +70,7 @@ function CouponCreation() {
 
       authenticatedRequest({
         method: 'POST',
-        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/serial`,
+        url: makeApiUrl(ApiPath.createCouponSerials),
         data: {
           ...options
         }
@@ -101,91 +101,89 @@ function CouponCreation() {
   };
 
   return (
-    <AuthorizationWrapper>
-      <CentralizeComponentWrapper>
-        <DataInputWrapper>
-          <InputBox>
-            <Ccs.OptionLabel htmlFor={requiredOptions.coachId}> 코치를 선택해 주세요</Ccs.OptionLabel>
-            <OptionList
-              options={couponOptions.coaches}
-              name={requiredOptions.coachId}
-              handleChange={handleChange}
-            />
-            {formik.touched[requiredOptions.coachId]
-              && formik.errors[requiredOptions.coachId]
-              && <Text.warning>{formik.errors[requiredOptions.coachId]}</Text.warning>
-            }
-          </InputBox>
+    <CentralizeComponentWrapper>
+      <DataInputWrapper>
+        <InputBox>
+          <Ccs.OptionLabel htmlFor={requiredOptions.coachId}> 코치를 선택해 주세요</Ccs.OptionLabel>
+          <OptionList
+            options={couponOptions.coaches}
+            name={requiredOptions.coachId}
+            handleChange={handleChange}
+          />
+          {formik.touched[requiredOptions.coachId]
+            && formik.errors[requiredOptions.coachId]
+            && <Text.warning>{formik.errors[requiredOptions.coachId]}</Text.warning>
+          }
+        </InputBox>
 
-          <InputBox>
-            <Ccs.OptionLabel htmlFor={requiredOptions.couponType}>쿠폰을 선택해 주세요</Ccs.OptionLabel>
-            <OptionList
-              options={couponOptions.couponTypes}
-              name={requiredOptions.couponType}
-              handleChange={handleChange}
-            />
-            {
-              formik.touched[requiredOptions.couponType]
-              && formik.errors[requiredOptions.couponType]
-              && <Text.warning>{formik.errors[requiredOptions.couponType]}</Text.warning>
-            }
-          </InputBox>
+        <InputBox>
+          <Ccs.OptionLabel htmlFor={requiredOptions.couponType}>쿠폰을 선택해 주세요</Ccs.OptionLabel>
+          <OptionList
+            options={couponOptions.couponTypes}
+            name={requiredOptions.couponType}
+            handleChange={handleChange}
+          />
+          {
+            formik.touched[requiredOptions.couponType]
+            && formik.errors[requiredOptions.couponType]
+            && <Text.warning>{formik.errors[requiredOptions.couponType]}</Text.warning>
+          }
+        </InputBox>
 
-          <InputBox>
-            <Ccs.OptionLabel htmlFor={requiredOptions.coupons}>쿠폰 수량을 입력해 주세요</Ccs.OptionLabel>
-            <DataInput
-              type='text'
-              placeholder="쿠폰 수량"
-              name={requiredOptions.coupons}
-              onChange={handleChange}
-            />
-            {
-              formik.touched[requiredOptions.coupons]
-              && formik.errors[requiredOptions.coupons]
-              && <Text.warning>{formik.errors[requiredOptions.coupons]}</Text.warning>
-            }
-          </InputBox>
+        <InputBox>
+          <Ccs.OptionLabel htmlFor={requiredOptions.coupons}>쿠폰 수량을 입력해 주세요</Ccs.OptionLabel>
+          <DataInput
+            type='text'
+            placeholder="쿠폰 수량"
+            name={requiredOptions.coupons}
+            onChange={handleChange}
+          />
+          {
+            formik.touched[requiredOptions.coupons]
+            && formik.errors[requiredOptions.coupons]
+            && <Text.warning>{formik.errors[requiredOptions.coupons]}</Text.warning>
+          }
+        </InputBox>
 
-          <InputBox>
-            <Ccs.OptionLabel htmlFor={requiredOptions.couponTitle}>쿠폰 제목을 입력해 주세요</Ccs.OptionLabel>
-            <DataInput
-              type='text'
-              placeholder={
-                generateTitle(selectedCouponOptions[requiredOptions.coachId],
-                  selectedCouponOptions[requiredOptions.couponType],
-                  '쿠폰 제목을 입력해 주세요')
-              }
-              name={requiredOptions.couponTitle}
-              onChange={handleChange}
-            />
-            {
-              formik.touched[requiredOptions.couponTitle]
-              && formik.errors[requiredOptions.couponTitle]
-              && <Text.warning>{formik.errors[requiredOptions.couponTitle]}</Text.warning>
+        <InputBox>
+          <Ccs.OptionLabel htmlFor={requiredOptions.couponTitle}>쿠폰 제목을 입력해 주세요</Ccs.OptionLabel>
+          <DataInput
+            type='text'
+            placeholder={
+              generateTitle(selectedCouponOptions[requiredOptions.coachId],
+                selectedCouponOptions[requiredOptions.couponType],
+                '쿠폰 제목을 입력해 주세요')
             }
-          </InputBox>
+            name={requiredOptions.couponTitle}
+            onChange={handleChange}
+          />
+          {
+            formik.touched[requiredOptions.couponTitle]
+            && formik.errors[requiredOptions.couponTitle]
+            && <Text.warning>{formik.errors[requiredOptions.couponTitle]}</Text.warning>
+          }
+        </InputBox>
 
-          <InputBox>
-            <Ccs.OptionLabel htmlFor={requiredOptions.couponMessage}>쿠폰 메시지를 입력해 주세요</Ccs.OptionLabel>
-            <Ccs.InputCouponMessage
-              placeholder="수고하셨습니다!"
-              name={requiredOptions.couponMessage}
-              onChange={handleChange}
-            />
-            <div>{messageLength}/100</div>
-            {
-              formik.touched[requiredOptions.couponMessage]
-              && formik.errors[requiredOptions.couponMessage]
-              && <Text.warning>{formik.errors[requiredOptions.couponMessage]}</Text.warning>
-            }
-          </InputBox>
+        <InputBox>
+          <Ccs.OptionLabel htmlFor={requiredOptions.couponMessage}>쿠폰 메시지를 입력해 주세요</Ccs.OptionLabel>
+          <Ccs.InputCouponMessage
+            placeholder="수고하셨습니다!"
+            name={requiredOptions.couponMessage}
+            onChange={handleChange}
+          />
+          <div>{messageLength}/100</div>
+          {
+            formik.touched[requiredOptions.couponMessage]
+            && formik.errors[requiredOptions.couponMessage]
+            && <Text.warning>{formik.errors[requiredOptions.couponMessage]}</Text.warning>
+          }
+        </InputBox>
 
-          <SubmitButton type='button' onClick={handleCreateCouponNumber}>
-            Generate coupon
-          </SubmitButton>
-        </DataInputWrapper>
-      </CentralizeComponentWrapper>
-    </AuthorizationWrapper>
+        <SubmitButton type='button' onClick={handleCreateCouponNumber}>
+          Generate coupon
+        </SubmitButton>
+      </DataInputWrapper>
+    </CentralizeComponentWrapper>
     );
 }
 
