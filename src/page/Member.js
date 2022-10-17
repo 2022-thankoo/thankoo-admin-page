@@ -6,6 +6,7 @@ import {useState} from "react";
 import {generateDataId, generateTableHeaders, getDomainResponseParser} from "../data/dataGenerator";
 import DataList from "../component/dataList/DataList";
 import {PageWrapper} from "../component/commonStyle/PageWrapper";
+import {ApiPath, makeApiUrl} from "../data/path";
 
 function MemberPage() {
 
@@ -34,7 +35,7 @@ function MemberPage() {
   const handleModifyName = (memberId, data) => {
       authenticatedRequest({
         method: 'PUT',
-        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/members/${memberId}`,
+        url: makeApiUrl(ApiPath.changeMemberName(memberId)),
         data: {name: data.name}
       })
         .then(res => console.log(res))
@@ -43,21 +44,19 @@ function MemberPage() {
     // console.log(member);
 
   return (
-    <AuthorizationWrapper>
-      <PageWrapper>
-        <Header
-          handleSubmit={handleMember}
-          searchOption={searchOptions.member}
-        />
-        <DataList
-          idList={idList}
-          tableHeaders={tableHeaders}
-          tableRows={member}
-          modifyTargets={["name"]}
-          handleModify={handleModifyName}
-        />
-      </PageWrapper>
-    </AuthorizationWrapper>
+    <PageWrapper>
+      <Header
+        handleSubmit={handleMember}
+        searchOption={searchOptions.member}
+      />
+      <DataList
+        idList={idList}
+        tableHeaders={tableHeaders}
+        tableRows={member}
+        modifyTargets={["name"]}
+        handleModify={handleModifyName}
+      />
+    </PageWrapper>
   );
 }
 

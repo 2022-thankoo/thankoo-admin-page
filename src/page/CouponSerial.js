@@ -51,21 +51,19 @@ function CouponSerial() {
   }
 
   return (
-    <AuthorizationWrapper>
-      <PageWrapper>
-        <Header
-          handleSubmit={handleSubmit}
-          searchOption={searchOptions.couponSerial}
-        />
-        <DataList
-          dropDownList={dropDownList}
-          idList={idList}
-          tableHeaders={tableHeaders}
-          tableRows={couponSerial}
-          handleSelectData={handleCreateQrCode}
-        />
-      </PageWrapper>
-    </AuthorizationWrapper>
+    <PageWrapper>
+      <Header
+        handleSubmit={handleSubmit}
+        searchOption={searchOptions.couponSerial}
+      />
+      <DataList
+        dropDownList={dropDownList}
+        idList={idList}
+        tableHeaders={tableHeaders}
+        tableRows={couponSerial}
+        handleSelectData={handleCreateQrCode}
+      />
+    </PageWrapper>
   )
 }
 

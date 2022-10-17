@@ -1,13 +1,13 @@
 import * as yup from 'yup';
 import {useFormik} from "formik";
 
-import AuthorizationWrapper from "../component/AuthorizationWrapper";
 import {CentralizeComponentWrapper} from "../component/commonStyle/PageWrapper";
 import {DataInput, DataInputWrapper, InputBox, SubmitButton} from "../component/commonStyle/DataInput";
 import {warningMessage} from "../data/message";
 import {authenticatedRequest} from "../util/axiosIntance";
 import * as Text from "../component/commonStyle/TextBox";
 import httpStatus from "../data/httpStatus";
+import {ApiPath, makeApiUrl} from "../data/path";
 
 function OrganizationCreation() {
 
@@ -43,7 +43,7 @@ function OrganizationCreation() {
 
       authenticatedRequest({
         method: 'POST',
-        url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/organizations`,
+        url: makeApiUrl(ApiPath.createOrganization),
         data: {...requestBody}
       })
         .then((res) => {
@@ -65,30 +65,28 @@ function OrganizationCreation() {
   }
 
   return (
-    <AuthorizationWrapper>
-      <CentralizeComponentWrapper>
-        <DataInputWrapper>
-          {Object.keys(requiredOptions).map(key => (
-            <InputBox key={key}>
-              <label htmlFor={requiredOptions[key]}>{labelElements[key]}</label>
-              <DataInput
-                type='text'
-                name={requiredOptions[key]}
-                onChange={handleChange}
-              />
-              {
-                formik.touched[key]
-                && formik.errors[key]
-                && <Text.warning >{formik.errors[key]}</Text.warning>
-              }
-            </InputBox>
-          ))}
-          <SubmitButton type='submit' onClick={handleCreateOrganization}>
-            Create Organization
-          </SubmitButton>
-        </DataInputWrapper>
-      </CentralizeComponentWrapper>
-    </AuthorizationWrapper>
+    <CentralizeComponentWrapper>
+      <DataInputWrapper>
+        {Object.keys(requiredOptions).map(key => (
+          <InputBox key={key}>
+            <label htmlFor={requiredOptions[key]}>{labelElements[key]}</label>
+            <DataInput
+              type='text'
+              name={requiredOptions[key]}
+              onChange={handleChange}
+            />
+            {
+              formik.touched[key]
+              && formik.errors[key]
+              && <Text.warning >{formik.errors[key]}</Text.warning>
+            }
+          </InputBox>
+        ))}
+        <SubmitButton type='submit' onClick={handleCreateOrganization}>
+          Create Organization
+        </SubmitButton>
+      </DataInputWrapper>
+    </CentralizeComponentWrapper>
   )
 }
 
