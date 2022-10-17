@@ -19,7 +19,8 @@ function MemberPage() {
       method: 'GET',
       url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/members?startDate=${startDate}&endDate=${endDate}`
     })
-      .then(({data}) => {
+      .then((response) => {
+        let {data} = response;
         if (data.length > 50) {
           data = data.slice(0, 51);
         }

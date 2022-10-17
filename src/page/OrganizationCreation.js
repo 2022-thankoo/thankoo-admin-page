@@ -7,6 +7,7 @@ import {DataInput, DataInputWrapper, InputBox, SubmitButton} from "../component/
 import {warningMessage} from "../data/message";
 import {authenticatedRequest} from "../util/axiosIntance";
 import * as Text from "../component/commonStyle/TextBox";
+import httpStatus from "../data/httpStatus";
 
 function OrganizationCreation() {
 
@@ -45,7 +46,11 @@ function OrganizationCreation() {
         url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/organizations`,
         data: {...requestBody}
       })
-        .then(() => alert('조직이 생성되었습니다.'))
+        .then((res) => {
+          if (res.status === httpStatus.created) {
+            alert('조직이 생성되었습니다.')
+          }
+        })
         .catch(err => console.log(err));
     }
   });

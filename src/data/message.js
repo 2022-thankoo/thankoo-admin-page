@@ -15,4 +15,6 @@ export const warningMessage = {
   organizationNameLengthExceeded: '조직 이름은 최대 12글자입니다',
   organizationLimitedSizeIsEmpty: '조직 인원 수를 입력해 주세요',
   organizationLimitedSizeError: '조직 인원 수는 10명 이상 500명 이하여야 합니다',
+
+  unknownError: '알 수 없는 에러입니다.',
 };
