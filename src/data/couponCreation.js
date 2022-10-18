@@ -18,6 +18,7 @@ export const coaches = [
   makeOption("109", "포코"),
   makeOption("18", "스컬"),
 ];
+Object.freeze(coaches);
 
 export const getCoaches = () => coaches.map(coach => coach.actualValue)
   .filter(coach => coach !== coachBlankOption.actualValue);
@@ -27,6 +28,7 @@ export const couponTypes = [
   makeOption("COFFEE", "커피"),
   makeOption("MEAL", "식사"),
 ];
+Object.freeze(couponTypes);
 
 export const getCouponTypes = () => couponTypes.map(couponType => couponType.actualValue)
   .filter(couponType => couponType !== couponBlankOption.actualValue);

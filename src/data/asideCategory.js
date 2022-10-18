@@ -20,5 +20,6 @@ const category = [
     ]
   }
 ];
+Object.freeze(category);
 
 export default category;

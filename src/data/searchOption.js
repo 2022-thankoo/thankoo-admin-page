@@ -28,3 +28,4 @@ export const searchOptions = {
   couponSerial: makeSearchOption(false, true, coaches),
   organization: makeSearchOption(true, false),
 };
+Object.freeze(searchOptions);
