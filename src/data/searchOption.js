@@ -26,4 +26,5 @@ export const searchOptions = {
     makeOption("canceled", "canceled")
   ]),
   couponSerial: makeSearchOption(false, true, coaches),
+  organization: makeSearchOption(true, false),
 };

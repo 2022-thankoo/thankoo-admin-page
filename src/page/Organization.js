@@ -1,14 +1,31 @@
-import {useState} from "react";
+import useDataList from "../hooks/useDataList";
+import {ApiPath} from "../data/path";
+import {PageWrapper} from "../component/commonStyle/PageWrapper";
+import {searchOptions} from "../data/searchOption";
+import Header from "../component/header/Header";
+import DataList from "../component/dataList/DataList";
 
 function Organization() {
 
-  const [organizations, setOrganizations] = useState([]);
-  const [tableHeaders, setTableHeaders] = useState([]);
-  const [idList, setIdList] = useState([]);
+  const {domain: organization,
+    tableHeaders,
+    idList,
+    handleDomain
+  } = useDataList(ApiPath.getOrganizations, "organizationId");
 
-  // const handleOrganization() {
-  //
-  // }
+  return (
+    <PageWrapper>
+      <Header
+        handleSubmit={handleDomain}
+        searchOption={searchOptions.organization}
+      />
+      <DataList
+        idList={idList}
+        tableHeaders={tableHeaders}
+        tableRows={organization}
+      />
+    </PageWrapper>
+  )
 }
 
 export default Organization;
