@@ -8,6 +8,7 @@ const category = [
       createCategoryElement(ClientPath.member, 'Member'),
       createCategoryElement(ClientPath.coupon, 'Coupon'),
       createCategoryElement(ClientPath.couponSerial, 'Coupon Serial'),
+      createCategoryElement(ClientPath.organization, 'Organization'),
     ]
   },
   {
