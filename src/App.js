@@ -43,14 +43,11 @@ function App() {
             <Route element={<AuthOnly/>}>
               <Route path={ClientPath.member} element={<Member/>}/>
               <Route path={ClientPath.coupon} element={<Coupon/>}/>
-              <Route path={ClientPath.meeting} element={<Meeting/>}/>
               <Route path={ClientPath.couponSerial} element={<CouponSerial/>}/>
-              <Route path={ClientPath.reservation} element={<Reservation/>}/>
               <Route path={ClientPath.organization} element={<Organization/>}/>
 
               <Route path={ClientPath.couponCreation} element={<CouponCreation/>}/>
               <Route path={ClientPath.organizationCreation} element={<OrganizationCreation />}/>
-              <Route path={ClientPath.adminAccount} element={<AdminAccount/>}/>
               <Route path={ClientPath.qrCode} element={<QrList/>}/>
               <Route path={ClientPath.signOut} element={<SignOut/>}/>
             </Route>
