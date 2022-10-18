@@ -59,10 +59,10 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
             {tableHeaders?.length >= 1 && tableHeaders.map(tableHeader => <th key={tableHeader}>{tableHeader}</th>)}
             <th>
               action
-              <DropDownMenu
+              {dropDownList && <DropDownMenu
                 menuList={dropDownList}
                 handleSelectData={handleSelectData}
-              />
+              />}
             </th>
           </tr>
         </Dls.TableHeader>
