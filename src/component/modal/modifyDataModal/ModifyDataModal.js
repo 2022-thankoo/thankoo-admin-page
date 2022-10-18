@@ -24,7 +24,6 @@ function ModifyDataModal({target, handleModify}) {
     if (equal(target, modifiedData)) {
       return;
     }
-    console.log(modifiedData);
     const {id, ...data} = modifiedData;
     handleModify(id, data);
   }
