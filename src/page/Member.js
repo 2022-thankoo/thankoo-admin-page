@@ -1,36 +1,18 @@
 import Header from "../component/header/Header";
 import {searchOptions} from "../data/searchOption";
-import AuthorizationWrapper from "../component/AuthorizationWrapper";
 import {authenticatedRequest} from "../util/axiosIntance";
-import {useState} from "react";
-import {generateDataId, generateTableHeaders, getDomainResponseParser} from "../data/dataGenerator";
 import DataList from "../component/dataList/DataList";
 import {PageWrapper} from "../component/commonStyle/PageWrapper";
 import {ApiPath, makeApiUrl} from "../data/path";
+import useDataList from "../hooks/useDataList";
 
 function MemberPage() {
 
-  const [member, setMember] = useState([]);
-  const [tableHeaders, setTableHeaders] = useState([]);
-  const [idList, setIdList] = useState([]);
-
-  const handleMember = (startDate, endDate, status) => {
-
-    authenticatedRequest({
-      method: 'GET',
-      url: `${process.env.REACT_APP_SERVER_ORIGIN}/admin/members?startDate=${startDate}&endDate=${endDate}`
-    })
-      .then((response) => {
-        let {data} = response;
-        if (data.length > 50) {
-          data = data.slice(0, 51);
-        }
-        setTableHeaders(generateTableHeaders(data));
-        setIdList(generateDataId(data, "memberId"));
-        setMember(getDomainResponseParser(data, "memberId"));
-      })
-      .catch(err => console.log(err));
-  }
+  const {domain: member,
+    tableHeaders,
+    idList,
+    handleDomain
+  } = useDataList(ApiPath.getMembers, "memberId");
 
   const handleModifyName = (memberId, data) => {
       authenticatedRequest({
@@ -41,12 +23,12 @@ function MemberPage() {
         .then(res => console.log(res))
         .catch(err => console.log(err));
     }
-    // console.log(member);
 
+  console.log(member);
   return (
     <PageWrapper>
       <Header
-        handleSubmit={handleMember}
+        handleSubmit={handleDomain}
         searchOption={searchOptions.member}
       />
       <DataList
