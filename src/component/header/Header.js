@@ -37,7 +37,6 @@ function Header({handleSubmit, searchOption}) {
     }),
     onSubmit: ({startDate, endDate, status}) => {
       handleSubmit(startDate, endDate, status);
-      console.log("submit: ", startDate, endDate, status);
     }
   });
 

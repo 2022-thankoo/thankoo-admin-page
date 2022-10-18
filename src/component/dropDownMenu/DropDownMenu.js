@@ -23,7 +23,6 @@ function DropDownMenu({menuList, handleSelectData}) {
                 key={menu}
                 type='button'
                 onClick={() => {
-                  console.log('clicked')
                   handleSelectData();
                 }}
               >{menu}</button>

@@ -7,6 +7,7 @@ import {useRecoilValue} from "recoil";
 import selectedDataId from "../globalState/selectedDataId";
 import useDataList from "../hooks/useDataList";
 import {ApiPath, makeApiUrl} from "../data/path";
+import httpStatus from "../data/httpStatus";
 
 function CouponPage() {
 
@@ -26,7 +27,11 @@ function CouponPage() {
       url: makeApiUrl(ApiPath.expireCoupon),
       data: {couponIds: selectedCouponsId}
     })
-      .then(res => alert('쿠폰 만료처리 완료'))
+      .then(res => {
+        if (res.status === httpStatus.noContent) {
+          alert('쿠폰 만료처리 완료');
+        }
+      })
       .catch(err => console.log(err));
   }
 

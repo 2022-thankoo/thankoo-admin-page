@@ -23,7 +23,6 @@ function DataList({dropDownList, idList, tableHeaders, tableRows, handleSelectDa
   };
 
   const handleSelect = (checked, id) => {
-    console.log(selectedIds);
     if (checked) {
       setSelectedIds([...selectedIds, id]);
       return;

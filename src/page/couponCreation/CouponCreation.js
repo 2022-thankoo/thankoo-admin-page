@@ -14,6 +14,7 @@ import {authenticatedRequest} from "../../util/axiosIntance";
 import {DataInput, DataInputWrapper, InputBox, SubmitButton} from "../../component/commonStyle/DataInput";
 import {CentralizeComponentWrapper} from "../../component/commonStyle/PageWrapper";
 import {ApiPath, makeApiUrl} from "../../data/path";
+import httpStatus from "../../data/httpStatus";
 
 function CouponCreation() {
 
@@ -75,7 +76,11 @@ function CouponCreation() {
           ...options
         }
       })
-        .then(() => alert('쿠폰이 생성되었습니다.'))
+        .then(res => {
+          if (res.status === httpStatus.ok) {
+            alert('쿠폰이 생성되었습니다.')
+          }
+        })
         .catch(err => console.log(err));
     }
   });

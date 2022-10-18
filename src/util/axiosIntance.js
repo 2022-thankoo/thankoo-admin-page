@@ -25,13 +25,11 @@ export const authenticatedRequest = axios.create({
 
 authenticatedRequest.interceptors.response.use((response) => response, (error) => {
   const {status, data: {message}} = error.response;
-  console.log(status, message);
   handleErrorResponse(status, message);
   return error;
 });
 
 const handleErrorResponse = (status, errorMessage) => {
-  console.log(status);
   switch (status) {
     case httpStatus.badRequest:
       alert(errorMessage);
