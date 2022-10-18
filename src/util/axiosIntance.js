@@ -31,7 +31,8 @@ authenticatedRequest.interceptors.response.use((response) => response, (error) =
 });
 
 const handleErrorResponse = (status, errorMessage) => {
-  switch (errorMessage) {
+  console.log(status);
+  switch (status) {
     case httpStatus.badRequest:
       alert(errorMessage);
       break;

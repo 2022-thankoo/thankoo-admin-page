@@ -33,6 +33,9 @@ export const generateDataId = (data, idKey) => {
 }
 
 export const getDomainResponseParser = (data, idKey) => {
+  if (idKey.includes('coupon') || idKey.includes('Couon')) {
+    return getCouponResponseParser(data);
+  }
   return data.map(d => {
     const id = d[idKey];
     delete d[idKey];
@@ -40,7 +43,7 @@ export const getDomainResponseParser = (data, idKey) => {
   });
 }
 
-export const getCouponResponseParser = (data) => {
+const getCouponResponseParser = (data) => {
   return data.map(({couponId, createdAt, modifiedAt, receiver: {name: receiverName}, sender: {name: senderName}, status, type}) => ({
     id: couponId, type, status,  senderName, receiverName, createdAt, modifiedAt
   }));
