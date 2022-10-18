@@ -18,3 +18,4 @@ export const warningMessage = {
 
   unknownError: '알 수 없는 에러입니다.',
 };
+Object.freeze(warningMessage);

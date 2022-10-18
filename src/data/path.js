@@ -27,5 +27,6 @@ export const ApiPath = {
   createOrganization: `${apiBaseUrl}/organizations`,
   getOrganizations: `${apiBaseUrl}/organizations`,
 }
+Object.freeze(ApiPath);
 
 export const makeApiUrl = (path) => `${process.env.REACT_APP_SERVER_ORIGIN}${path}`;
